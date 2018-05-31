@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Team;
 use App\Player;
+use App\WorldCup;
 
 class player_teams_seeder extends Seeder
 {
@@ -15,6 +16,8 @@ class player_teams_seeder extends Seeder
     {
         Team::truncate();
         Player::truncate();
+        WorldCup::truncate();
+        $worldCup = WorldCup::create(['year' => 2018, 'place' => 'Russia', 'last_submission' => '2018-06-20' ]);
         $file= \File::get(storage_path('json/players.json'));
         if ($file) {
             $file=json_decode($file, true);
@@ -25,7 +28,8 @@ class player_teams_seeder extends Seeder
                 }
                 $team = Team::create([
                     'name' => $teamName,
-                    'group' => $players['group']
+                    'group' => $players['group'],
+                    'world_cup_id' => $worldCup->id
                 ]);
                 foreach ($players['players'] as  $player) {
                     if (!$player['name']) {

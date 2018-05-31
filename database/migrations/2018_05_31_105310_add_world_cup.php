@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTeamsTable extends Migration
+class AddWorldCup extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teams', function (Blueprint $table) {
+        Schema::create('world_cups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('group')->nullable();
-            $table->integer('world_cup_id')->nullable();
+            $table->integer('year');
+            $table->string('place');
+            $table->string('logo')->nullable();
+            $table->date('last_submission')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teams');
+        Schema::dropIfExists('world_cups');
     }
 }

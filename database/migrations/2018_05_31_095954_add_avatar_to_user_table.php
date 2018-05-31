@@ -13,8 +13,9 @@ class AddAvatarToUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('avatar');
+            $table->boolean('is_admin')->default(0);
         });
     }
 
@@ -25,8 +26,9 @@ class AddAvatarToUserTable extends Migration
      */
     public function down()
     {
-         Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('avatar');
+            $table->dropColumn('is_admin');
         });
     }
 }
