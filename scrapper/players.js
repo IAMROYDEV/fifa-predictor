@@ -69,6 +69,10 @@ function scrapData() {
                 players.push({
                     position: player.find("td:nth-child(2)").text(),
                     name: player.find("th").text(),
+                    href: player
+                        .find("th")
+                        .find("a")
+                        .attr("href"),
                     dob: player.find("td:nth-child(4)").text(),
                     caps: player.find("td:nth-child(5)").text(),
                     goals: player.find("td:nth-child(6)").text(),

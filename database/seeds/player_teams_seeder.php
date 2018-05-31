@@ -43,6 +43,7 @@ class player_teams_seeder extends Seeder
                         'name'      => $player['name'],
                         'dob'       => ($dob ? new \Carbon\Carbon($dob) : null),
                         'position'  => $player['position'],
+                        'href'      => $player['href'],
                         'caps'      => $player['caps'] ? : 0,
                         'goals'     => $player['goals'] ? : 0,
                         'club'      => $player['club'],
