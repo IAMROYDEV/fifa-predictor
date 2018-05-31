@@ -13,6 +13,8 @@ class player_teams_seeder extends Seeder
      */
     public function run()
     {
+        Team::truncate();
+        Player::truncate();
         $file= \File::get(storage_path('json/players.json'));
         if ($file) {
             $file=json_decode($file, true);
@@ -41,6 +43,7 @@ class player_teams_seeder extends Seeder
                         'name'      => $player['name'],
                         'dob'       => ($dob ? new \Carbon\Carbon($dob) : null),
                         'position'  => $player['position'],
+                        'href'      => $player['href'],
                         'caps'      => $player['caps'] ? : 0,
                         'goals'     => $player['goals'] ? : 0,
                         'club'      => $player['club'],
