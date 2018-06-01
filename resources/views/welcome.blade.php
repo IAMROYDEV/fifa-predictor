@@ -73,7 +73,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="top-left links">
-                <img src="{{asset('img/logo.png')}}" width="15%" style="float: left">
+                <img src="{{asset('img/logo.png')}}" width="10%" style="float: left">
                     <span style="
                         font-family: cursive;
                         font-size: xx-large;

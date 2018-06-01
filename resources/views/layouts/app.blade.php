@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('img/logo.png')}}" width="15%">
+                    <img src="{{asset('img/logo.png')}}" width="10%">
                     <span style="
                         font-family: cursive;
                         font-size: xx-large;
