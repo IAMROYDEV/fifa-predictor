@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(player_teams_seeder::class);
+        $this->call(add_code_col_to_teams::class);
     }
 }

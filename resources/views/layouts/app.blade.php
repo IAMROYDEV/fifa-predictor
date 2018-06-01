@@ -104,6 +104,7 @@
             @yield('content')
         </main>
         <script>
+            window.load = function () {
                 require(['jquery', 'selectize'], function ($, selectize) {
                     $(document).ready(function () {
                         $('#input-tags').selectize({
@@ -154,8 +155,9 @@
                         });
                     });
                 });
+                }
               </script>
     </div>
-    
+    @yield('sub-scripts')
 </body>
 </html>

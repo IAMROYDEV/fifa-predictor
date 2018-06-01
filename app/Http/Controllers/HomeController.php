@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
-
+use App\Team;
 class HomeController extends Controller
 {
     /**
@@ -29,7 +29,8 @@ class HomeController extends Controller
         if ($user->is_admin === 1) {
             return redirect()->route('admin');
         } else {
-            return view('home');
+            $teams = Team::get();
+            return view('home', ['teams' => $teams]);
         }
     }
 }
