@@ -59,7 +59,26 @@
 <script>
     window.onload=function(){
        require(['jquery','selectize'],function($,selectize){
-           $('select').selectize();
+           $('select').selectize({
+               render : {
+                   option(data,escape){
+                       return (
+                        `<div>
+                            <span class="image"><img src="${data.image}" /></span>
+                            <span class="title">${escape(data.text)}</span>
+                        </div>`
+                        );
+                   },
+                   item(data,escape){
+                       return (
+                        `<div>
+                            <span class="image"><img src="${data.image}" /></span>
+                            <span class="title">${escape(data.text)}</span>
+                        </div>`
+                        );
+                   }
+               }
+           });
         }) 
     }
     
