@@ -13,7 +13,9 @@
                 <select name="team" class="form-control custom-select" id="select-countries">
                    
                 @foreach($teams as $team)
-                    <option value="{{$team->code}}" data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}'>{{$team->name}}</option>
+                    <option value="{{$team->code}}" data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}'>
+                        {{str_replace('_',''$team->name)}}
+                    </option>
                 @endforeach
                 </select>
 
