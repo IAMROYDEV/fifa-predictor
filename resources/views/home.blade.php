@@ -14,7 +14,7 @@
                    
                 @foreach($teams as $team)
                     <option value="{{$team->code}}" data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}'>
-                        {{str_replace('_',''$team->name)}}
+                        {{str_replace('_',' ',$team->name)}}
                     </option>
                 @endforeach
                 </select>
