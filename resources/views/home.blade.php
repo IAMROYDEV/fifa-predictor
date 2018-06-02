@@ -69,7 +69,14 @@
                                     <td>
                                         {{$player->team->name}}
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label class="colorinput">
+                                              <input name="color" type="checkbox" value="azure" class="colorinput-input">
+                                              <span class="colorinput-color bg-azure"></span>
+                                            </label>
+                                        </div>
+                                    </td>
 
                                 </tr>
                                 @endforeach
