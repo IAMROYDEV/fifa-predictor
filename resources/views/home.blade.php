@@ -49,7 +49,6 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Position</th>
                                 <th>Goals</th>
                                 <th>Team</th>
                                 <th></th>
@@ -61,10 +60,7 @@
                                 <tr class="tr-{{$player->id}}">
 
                                     <td>
-                                        {{$player->name}}
-                                    </td>
-                                    <td>
-                                        {{$player->position}}
+                                        {{$player->name}} ({{$player->position}})
                                     </td>
                                     <td>
                                         {{$player->goals}}
@@ -74,9 +70,9 @@
                                     </td>
                                     <td>
                                         @if(isPlayerAdded($player->id))
-                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-primary btn-danger add-squad"><i class="fe fe-trash "></i></button>
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad"><i class="fe fe-trash "></i> Remove</button>
                                         @else
-                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-primary add-squad"><i class="fe fe-plus "></i></button>
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-success btn-block add-squad"><i class="fe fe-plus "></i>Add</button>
                                         @endif
                                     </td>
 
@@ -98,7 +94,6 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Position</th>
                                 <th>Goals</th>
                                 <th>Team</th>
                                 <th></th>
@@ -110,10 +105,7 @@
                                 <tr class="tr-{{$player->id}}">
 
                                     <td>
-                                        {{$player->name}}
-                                    </td>
-                                    <td>
-                                        {{$player->position}}
+                                        {{$player->name}} ({{$player->position}})
                                     </td>
                                     <td>
                                         {{$player->goals}}
@@ -122,7 +114,7 @@
                                         {{$player->team->name}}
                                     </td>
                                     <td>
-                                        <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-primary btn-danger add-squad"><i class="fe fe-trash "></i></button>
+                                        <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad"><i class="fe fe-trash "></i> Remove</button>
                                     </td>
 
                                 </tr>
@@ -224,13 +216,12 @@
                         success: function(data) {
                             if(data.results == 0) {
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
-                                $('.add-ply-tbody .tr-'+playerId+' button i').removeClass('fe-trash');
-                                $('.add-ply-tbody .tr-'+playerId+' button i').addClass('fe-plus');
+                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
                             } else {
-                                $('.add-ply-tbody .tr-'+playerId+' button i').removeClass('fe-plus');
-                                $('.add-ply-tbody .tr-'+playerId+' button i').addClass('fe-trash');
+                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-minus mr-2"></i> Remove');
                                 $('.remove-ply-tbody').append(data);
                             }
+                            $('.add-ply-tbody .tr-'+playerId+' button').toggleClass('btn-success');
                             $('.add-ply-tbody .tr-'+playerId+' button').toggleClass('btn-danger');
                         }
                     });
