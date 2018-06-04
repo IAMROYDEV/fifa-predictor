@@ -218,7 +218,7 @@
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
                             } else {
-                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-minus mr-2"></i> Remove');
+                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-trash mr-2"></i> Remove');
                                 $('.remove-ply-tbody').append(data);
                             }
                             $('.add-ply-tbody .tr-'+playerId+' button').toggleClass('btn-success');
