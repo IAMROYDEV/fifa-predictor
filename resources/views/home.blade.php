@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <label class="form-label">Teams</label>
                     <select name="team" class="form-control custom-select" id="select-countries">
-                        <option value="0"> -- Select team -- </option>
+                        <option value="all" data-data='{"image":"/assets/images/flags/select-team.png"}'> -- Select team -- </option>
                         @foreach($teams as $team)
                         <option value="{{$team->code}}" data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}' {{ ($slectedCode == $team->code ? "selected":"") }}>
                                     {{str_replace('_',' ',$team->name)}}
@@ -22,15 +22,18 @@
                     </select>
 
                 </div>
+                
                 <div class="form-group">
-                    <label class="form-label">Input group</label>
-                    <div class="input-group">
-                        <input value="{{ $searchKey }}" name="search" type="text" class="form-control" placeholder="Search for...">
+                    <label class="form-label">Select Player</label>
+                    <select name="player" class="form-control custom-select" id="select-players">
+                        <option value="0"> Search players.. </option>
+                        @foreach($players as $player)
+                        <option value="{{$player->id}}">
+                            {{str_replace('_',' ',$player->name)}}
+                        </option>
+                        @endforeach
+                    </select>
 
-                    </div>
-                </div>
-                <div class="form-footer">
-                    <button type="submit" class="btn btn-pill btn-primary">Search</button>
                 </div>
             </div>
         </form>
@@ -139,8 +142,9 @@
 @section('sub-scripts')
 <script>
         window.onload = function () {
+            setTimeout(function(){
                 require(['jquery', 'selectize'], function ($, selectize) {
-                        $('select').selectize({
+                        $('#select-countries').selectize({
                                 render: {
                                         option(data, escape) {
                                                 return (
@@ -160,26 +164,77 @@
                                         }
                                 }
                         });
+                        
+                        $('#select-players').selectize({
+                                render: {
+                                        option(data, escape) {
+                                                return (
+                                                                `<div>
+                            <span class="title">${escape(data.text)}</span>
+                        </div>`
+                                                                );
+                                        },
+                                        item(data, escape) {
+                                                return (
+                                                                `<div>
+                            <span class="title">${escape(data.text)}</span>
+                        </div>`
+                                                                );
+                                        }
+                                }
+                        });
                 })
+            
+                jQuery('#select-countries').change(function() {
+                    var team = $( this ).val();
+                    if(!team)
+                        return;
+                    var queryParameters = {}, queryString = location.search.substring(1),
+                        re = /([^&=]+)=([^&]*)/g, m;
 
-            jQuery(document).on('click', '.add-squad', function() {
-                var playerId = jQuery(this).data("player");
-                var self = jQuery(this);
-                $.ajax({
-                    type: "GET",
-                    url: "/users/add-players/"+playerId,
-                    success: function(data) {
-                        if(data.results == 0) {
-                            $('.remove-ply-tbody .tr-'+playerId).remove();
-                            $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
-                        } else {
-                            $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-minus mr-2"></i>Remove');
-                            $('.remove-ply-tbody').append(data);
-                        }
+                    // Creates a map with the query string parameters
+                    while (m = re.exec(queryString)) {
+                        queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
                     }
-                });
-            });
 
+                    // Add new parameters or update existing ones
+                    queryParameters['team'] = team;
+    //                queryParameters[''] = '';
+
+                    location.search = $.param(queryParameters); // Causes page to reload
+                });
+
+                jQuery('#select-players').change(function() {
+                    var playerId = parseInt($( this ).val());
+                    selectplayer(playerId);
+                });
+
+                jQuery(document).on('click', '.add-squad, #select-players', function() {
+                    var playerId = jQuery(this).data("player");
+                    selectplayer(playerId);
+                });
+                
+                
+                function selectplayer(playerId) {
+                    if(!playerId)
+                        return;
+                    $.ajax({
+                        type: "GET",
+                        url: "/users/add-players/"+playerId,
+                        success: function(data) {
+                            if(data.results == 0) {
+                                $('.remove-ply-tbody .tr-'+playerId).remove();
+                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
+                            } else {
+                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-minus mr-2"></i>Remove');
+                                $('.remove-ply-tbody').append(data);
+                            }
+                        }
+                    });
+                }
+                
+                
+            }, 1000);
         }
 
 

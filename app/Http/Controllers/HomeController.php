@@ -34,19 +34,20 @@ class HomeController extends Controller
             return redirect()->route('admin');
         } else {
             $teams = Team::get();
-            $query = $slectedCode = $players = '';
-            $searchKey = (isset($params['search'])) ? $params['search'] : '';
-            if(isset($params['team']) || $searchKey) {
+            $slectedCode = $players = '';
+            if(isset($params['team'])) { 
                 $team = Team::where('code', $params['team'])->first();
                 if(!empty($team)) {
                     $slectedCode = $team->code;
-                    $players  = Player::where('name', 'LIKE', '%' . $searchKey . '%')->where('team_id', $team->id)->get();
+                    $players  = Player::where('team_id', $team->id)->get();
                 } else {
-                    $players  = Player::where('name', 'LIKE', '%' . $searchKey . '%')->get();
+                    $players = Player::all();
                 }
-            } 
+            } else {
+                $players = Player::all();
+            }
             
-            return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'searchKey' => $searchKey, 'user' => Auth::user()]);
+            return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'user' => Auth::user()]);
         }
     }
     
