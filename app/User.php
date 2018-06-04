@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    
+    /**
+     * Get the players
+     */
+    public function players()
+    {
+        return $this->belongsToMany('App\Player', 'user_player')->withTimestamps();
+    }
 }

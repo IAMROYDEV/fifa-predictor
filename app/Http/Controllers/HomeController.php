@@ -46,7 +46,25 @@ class HomeController extends Controller
                 }
             } 
             
-            return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'searchKey' => $searchKey]);
+            return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'searchKey' => $searchKey, 'user' => Auth::user()]);
+        }
+    }
+    
+    
+    public function addPlayers(Request $request, $player_id) {
+        $user = Auth::user();
+        if($user->players()->where('player_id', $player_id)->count()) {
+            $user->players()->detach($player_id);
+            return response()->json([
+                'status'  => 200,
+                'message' => 'removed player successfully',
+                'results' => 0,
+            ], 200);
+        } else {
+            $user->players()->attach($player_id);
+            $player = Player::find($player_id);
+            return view('partial.addPlayers', ['player' => $player]);
+            
         }
     }
 }

@@ -12,4 +12,11 @@ class Player extends Model
     {
         return $this->belongsTo(\App\Team::class);
     }
+    
+     /**
+     * Get the user
+     */
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
 }

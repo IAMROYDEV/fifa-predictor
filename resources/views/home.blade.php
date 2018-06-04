@@ -49,13 +49,13 @@
                                 <th>Position</th>
                                 <th>Goals</th>
                                 <th>Team</th>
-                                <th></th>
+                                <th>Add to Squad</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="add-ply-tbody">
                             @if($players)
                                 @foreach($players as $player)
-                                <tr>
+                                <tr class="tr-{{$player->id}}">
 
                                     <td>
                                         {{$player->name}}
@@ -70,12 +70,11 @@
                                         {{$player->team->name}}
                                     </td>
                                     <td>
-                                        <div class="col-auto">
-                                            <label class="colorinput">
-                                              <input name="color" type="checkbox" value="azure" class="colorinput-input">
-                                              <span class="colorinput-color bg-azure"></span>
-                                            </label>
-                                        </div>
+                                        @if(isPlayerAdded($player->id))
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-pill btn-outline-primary add-squad"><i class="fe fe-minus mr-2"></i>Remove</button>
+                                        @else
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-pill btn-outline-primary add-squad"><i class="fe fe-plus mr-2"></i>Add</button>
+                                        @endif
                                     </td>
 
                                 </tr>
@@ -91,8 +90,43 @@
                 <div class="card-header">
                     <h3 class="card-title">Your Players</h3>
                 </div>
-                <div class="card-body">
-                    here we go
+                <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Goals</th>
+                                <th>Team</th>
+                                <th>Add to Squad</th>
+                            </tr>
+                        </thead>
+                        <tbody class="remove-ply-tbody">
+                            @if($user->players)
+                                @foreach($user->players as $player)
+                                <tr class="tr-{{$player->id}}">
+
+                                    <td>
+                                        {{$player->name}}
+                                    </td>
+                                    <td>
+                                        {{$player->position}}
+                                    </td>
+                                    <td>
+                                        {{$player->goals}}
+                                    </td>
+                                    <td>
+                                        {{$player->team->name}}
+                                    </td>
+                                    <td>
+                                        <button data-player="{{$player->id}}" type="button" class="btn btn-pill btn-outline-primary add-squad"><i class="fe fe-minus mr-2"></i>Remove</button>
+                                    </td>
+
+                                </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -128,19 +162,23 @@
                         });
                 })
 
-//        jQuery('select').change(function() {
-//            var team = $( this ).val();
-//            var url = window.location.href;    
-//            if (url.indexOf('?') > -1){
-//                if(url.indexOf('team') > -1){
-//                } else {
-//                    url += '&team=' + team;
-//                }
-//            }else{
-//               url += '?team=' + team;
-//            }
-//            window.location.href = url;
-//        });
+            jQuery(document).on('click', '.add-squad', function() {
+                var playerId = jQuery(this).data("player");
+                var self = jQuery(this);
+                $.ajax({
+                    type: "GET",
+                    url: "/users/add-players/"+playerId,
+                    success: function(data) {
+                        if(data.results == 0) {
+                            $('.remove-ply-tbody .tr-'+playerId).remove();
+                            $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
+                        } else {
+                            $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-minus mr-2"></i>Remove');
+                            $('.remove-ply-tbody').append(data);
+                        }
+                    }
+                });
+            });
 
         }
 
