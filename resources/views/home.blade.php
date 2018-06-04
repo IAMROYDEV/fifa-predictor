@@ -52,7 +52,7 @@
                                 <th>Position</th>
                                 <th>Goals</th>
                                 <th>Team</th>
-                                <th>Add to Squad</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody class="add-ply-tbody">
@@ -74,9 +74,9 @@
                                     </td>
                                     <td>
                                         @if(isPlayerAdded($player->id))
-                                            <button data-player="{{$player->id}}" type="button" class="btn btn-pill btn-outline-primary add-squad"><i class="fe fe-minus mr-2"></i>Remove</button>
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-primary btn-danger add-squad"><i class="fe fe-trash "></i></button>
                                         @else
-                                            <button data-player="{{$player->id}}" type="button" class="btn btn-pill btn-outline-primary add-squad"><i class="fe fe-plus mr-2"></i>Add</button>
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-primary add-squad"><i class="fe fe-plus "></i></button>
                                         @endif
                                     </td>
 
@@ -101,7 +101,7 @@
                                 <th>Position</th>
                                 <th>Goals</th>
                                 <th>Team</th>
-                                <th>Add to Squad</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody class="remove-ply-tbody">
@@ -122,7 +122,7 @@
                                         {{$player->team->name}}
                                     </td>
                                     <td>
-                                        <button data-player="{{$player->id}}" type="button" class="btn btn-pill btn-outline-primary add-squad"><i class="fe fe-minus mr-2"></i>Remove</button>
+                                        <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-primary btn-danger add-squad"><i class="fe fe-trash "></i></button>
                                     </td>
 
                                 </tr>
@@ -224,11 +224,14 @@
                         success: function(data) {
                             if(data.results == 0) {
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
-                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
+                                $('.add-ply-tbody .tr-'+playerId+' button i').removeClass('fe-trash');
+                                $('.add-ply-tbody .tr-'+playerId+' button i').addClass('fe-plus');
                             } else {
-                                $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-minus mr-2"></i>Remove');
+                                $('.add-ply-tbody .tr-'+playerId+' button i').removeClass('fe-plus');
+                                $('.add-ply-tbody .tr-'+playerId+' button i').addClass('fe-trash');
                                 $('.remove-ply-tbody').append(data);
                             }
+                            $('.add-ply-tbody .tr-'+playerId+' button').toggleClass('btn-danger');
                         }
                     });
                 }
