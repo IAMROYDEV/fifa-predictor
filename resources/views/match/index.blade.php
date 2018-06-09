@@ -9,9 +9,9 @@
         <div class="form-group">
           <label class="form-label">Stages</label>
           <select name="stage" class="form-control custom-select" id="select-stage">
-            <option value="0"> Select stage </option>
+            <option value=""> Select stage </option>
             @foreach($stages as $stage)
-            <option value="{{$stage->id}}">
+            <option {{ ($selectStage == $stage->id ? "selected":"") }} value="{{$stage->id}}">
               {{$stage->title}}
             </option>
             @endforeach
@@ -40,7 +40,7 @@
                         	<i class="p-2"><img src="/assets/images/flags/{{$match->teamA->code}}.svg" title="{{$match->teamA->name}}" alt="{{$match->teamA->name}}" width="40" class="border border-light rounded" /></i>{{$match->teamA->name}}
                         	</div>
                         	<div class="col-3 col-sm-3 col-md-2">
-                            @if($match->user_team1_score)
+                            @if($match->user_team1_score !== null)
                         		<input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team1_score}}">
                             @else
                             <input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link">
@@ -54,7 +54,7 @@
                         	<i class="p-2"><img src="/assets/images/flags/{{$match->teamB->code}}.svg" title="{{$match->teamB->name}}" alt="{{$match->teamB->name}}" width="40" class="border border-light rounded" /></i>{{$match->teamB->name}}
                        		</div>
                        		<div class="col-3 col-sm-3 col-md-2">
-                            @if($match->user_team2_score)
+                            @if($match->user_team2_score !== null)
 								            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team2_score}}">
                             @else
                             <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link">

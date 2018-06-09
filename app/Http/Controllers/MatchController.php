@@ -11,6 +11,7 @@ class MatchController extends Controller
 {
     public function index(Request $request, $worldCupId)
     {
+        $stageSelected= 0;
         $user = auth()->user();
         $allMatches = Match::where('world_cup_id', $worldCupId)->get();
         foreach ($allMatches as $match) {
@@ -22,6 +23,7 @@ class MatchController extends Controller
         $params = $request->all();
         $stages = MatchStage::all();
         if (isset($params['stage'])) {
+            $stageSelected = $params['stage'];
             $matches = Match::select('matches.*', 'user_match_predictions.team1_score as user_team1_score', 'user_match_predictions.team2_score as user_team2_score', 'user_match_predictions.points as user_points')
             ->leftJoin('user_match_predictions', 'user_match_predictions.match_id', '=', 'matches.id')
             ->where('user_match_predictions.user_id', $user->id)
@@ -33,7 +35,7 @@ class MatchController extends Controller
             ->where('world_cup_id', $worldCupId)->get();
         }
 
-        return view('match.index', ['matches' => $matches, 'stages' => $stages]);
+        return view('match.index', ['matches' => $matches, 'stages' => $stages, 'selectStage' => $stageSelected]);
     }
 
     public function setUserMatchPrediction(Request $request)
