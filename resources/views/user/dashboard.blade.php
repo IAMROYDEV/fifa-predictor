@@ -20,6 +20,17 @@
                 @include('user.predictions.worldcup-winner')
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    @include('user.predictions.current-match')
+                </div>
+                <div class="col-md-12">
+                    @include('user.predictions.squad')
+                </div>
+            </div>
+        </div>
     </div>
+    
 </div>
 @endsection

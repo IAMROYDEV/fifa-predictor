@@ -20,9 +20,10 @@ class UserDashboardController extends Controller
         } else {
             $allowChange=false;
         }
+        $user=auth()->user();
         $teams=Team::orderBy('name', 'ASC')->get();
         $players=Player::orderBy('team_id')->orderBy('name', 'ASC')->get();
         $changeField=request('change');
-        return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField'));
+        return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user'));
     }
 }
