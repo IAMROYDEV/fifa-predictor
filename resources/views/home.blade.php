@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    @if(!$user->is_team_locked)
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Select Players</h3>
@@ -38,8 +39,10 @@
             </div>
         </form>
     </div>
+    @endif
     <div class="row">
-        <div class="col-6">
+        @if(!$user->is_team_locked)
+            <div class="col d-md-none d-none d-lg-block">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Select players</h3>
@@ -49,8 +52,6 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Goals</th>
-                                <th>Team</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -60,17 +61,11 @@
                                 <tr class="tr-{{$player->id}}">
 
                                     <td>
-                                        {{$player->name}} ({{$player->position}})
-                                    </td>
-                                    <td>
-                                        {{$player->goals}}
-                                    </td>
-                                    <td>
-                                        {{$player->team->name}}
+                                        <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> {{$player->name}} ({{$player->position}})
                                     </td>
                                     <td>
                                         @if(isPlayerAdded($player->id))
-                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad"><i class="fe fe-trash "></i> Remove</button>
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i> Remove</button>
                                         @else
                                             <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-success btn-block add-squad"><i class="fe fe-plus "></i>Add</button>
                                         @endif
@@ -84,7 +79,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        @endif
+        <div class="col">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Your Players</h3>
@@ -94,9 +90,10 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Goals</th>
-                                <th>Team</th>
+                                <th>Captain</th>
+                                @if(!$user->is_team_locked)
                                 <th></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody class="remove-ply-tbody">
@@ -105,18 +102,19 @@
                                 <tr class="tr-{{$player->id}}">
 
                                     <td>
-                                        {{$player->name}} ({{$player->position}})
+                                        <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> {{$player->name}} ({{$player->position}})
                                     </td>
                                     <td>
-                                        {{$player->goals}}
+                                        <label class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" name="your-captain" value="{{$player->id}}" {{ ($user->player_id == $player->id ? "checked":"") }}>
+                                            <span class="custom-control-label"></span>
+                                        </label>
                                     </td>
-                                    <td>
-                                        {{$player->team->name}}
-                                    </td>
-                                    <td>
-                                        <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad"><i class="fe fe-trash "></i> Remove</button>
-                                    </td>
-
+                                    @if(!$user->is_team_locked)
+                                        <td>
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i> Remove</button>
+                                        </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             @endif
@@ -124,6 +122,9 @@
                     </table>
                 </div>
             </div>
+            @if(!$user->is_team_locked)
+            <div class="row  text-center justify-content-center"><button class="btn btn-pill btn-secondary lock-team"><i class="fe fe-lock mr-2"></i>Lock the team</button></div>
+            @endif
         </div>
     </div>
     
@@ -203,9 +204,56 @@
 
                 jQuery(document).on('click', '.add-squad, #select-players', function() {
                     var playerId = jQuery(this).data("player");
+                    var totalPlayer = jQuery('.remove-ply-tbody tr').length;
+                    
+                    if(!(jQuery(this).hasClass('remove-squad')) && totalPlayer == 11) {
+                        alert('Maximum 11 players needs to be selected!');
+                        return;
+                    }
                     selectplayer(playerId);
                 });
                 
+                jQuery(document).on('click', 'input[name=your-captain]', function() {
+                    var captainId = jQuery(this).val();
+                    $.ajax({
+                        type: "GET",
+                        url: "/users/select-captain/"+captainId,
+                        success: function(data) {
+                            if(!(data) || (data && data.results != 1)) {
+                                alert('Something went wrong on server side!');
+                            }
+                        }
+                    });
+                });
+                
+                $('.lock-team').click(function(){
+                    var totalPlayer = jQuery('.remove-ply-tbody tr').length;
+                    var yourCaptain = $('input[name=your-captain]:checked').val();
+                    if(totalPlayer < 11) {
+                        alert('Please select 11 players to lock the team!');
+                        return;
+                    }
+                    if(!yourCaptain) {
+                        alert('Please select captain for your team!');
+                        return;
+                    }
+                    var r = confirm("Are you sure you want to lock your squad?\nChanges can't be reverted back!!");
+                    if(r) {
+                        $.ajax({
+                            type: "GET",
+                            url: "/lock-squad",
+                            success: function(data) {
+                                if(!(data) || (data && data.results != 1)) {
+                                    alert('Something went wrong on server side!');
+                                    return;
+                                } else {
+                                    //redirect to dashboard
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    }
+                 }); 
                 
                 function selectplayer(playerId) {
                     if(!playerId)

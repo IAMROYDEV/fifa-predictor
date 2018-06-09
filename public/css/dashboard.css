@@ -2153,6 +2153,14 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   color: #cd201f;
 }
 
+.validation-error {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 87.5%;
+  color: #cd201f;
+}
+
 .invalid-tooltip {
   position: absolute;
   top: 100%;

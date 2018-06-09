@@ -14,6 +14,7 @@ paths: {
 'bootstrap': 'assets/js/vendors/bootstrap.bundle.min',
 'sparkline': 'assets/js/vendors/jquery.sparkline.min',
 'selectize': 'assets/js/vendors/selectize.min',
+'jquery-confirm': 'assets/js/vendors/jquery-confirm.min',
 'tablesorter': 'assets/js/vendors/jquery.tablesorter.min',
 'vector-map': 'assets/js/vendors/jquery-jvectormap-2.0.3.min',
 'vector-map-de': 'assets/js/vendors/jquery-jvectormap-de-merc',

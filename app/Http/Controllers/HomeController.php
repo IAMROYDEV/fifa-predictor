@@ -56,6 +56,10 @@ class HomeController extends Controller
         $user = Auth::user();
         if($user->players()->where('player_id', $player_id)->count()) {
             $user->players()->detach($player_id);
+            if($user->player_id == $player_id) {
+                $user->player_id = null;
+                $user->save();
+            }
             return response()->json([
                 'status'  => 200,
                 'message' => 'removed player successfully',
@@ -67,5 +71,27 @@ class HomeController extends Controller
             return view('partial.addPlayers', ['player' => $player]);
             
         }
+    }
+    
+    public function selectCaptain(Request $request, $captain_id) {
+        $user = Auth::user();
+        $user->player_id = $captain_id;
+        $user->save();
+        return response()->json([
+            'status'  => 200,
+            'message' => 'Selected captain successfully',
+            'results' => 1,
+        ], 200);
+    }
+    
+    public function lockSquad(Request $request) {
+        $user = Auth::user();
+        $user->is_team_locked = 1;;
+        $user->save();
+        return response()->json([
+            'status'  => 200,
+            'message' => 'team locked successfully',
+            'results' => 1,
+        ], 200);
     }
 }
