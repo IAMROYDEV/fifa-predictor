@@ -8,7 +8,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Captain</th>
+                        <th>Team</th>
                         @if(!$user->is_team_locked)
                         <th></th>
                         @endif
@@ -20,13 +20,14 @@
                         <tr class="tr-{{$player->id}}">
 
                             <td>
-                                <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> {{$player->name}} ({{$player->position}})
+                                {{$player->name}} ({{$player->position}})
+                                @if($user->player_id == $player->id)
+                                    <span style="color: #0000ff;">(Captain)</span>
+                                @endif
                             </td>
                             <td>
-                                <label class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="your-captain" value="{{$player->id}}" {{ ($user->player_id == $player->id ? "checked":"") }}>
-                                    <span class="custom-control-label"></span>
-                                </label>
+                                <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> 
+                                
                             </td>
                             @if(!$user->is_team_locked)
                                 <td>
