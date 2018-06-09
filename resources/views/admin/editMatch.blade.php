@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="card">
+        {{-- {{dd($goalsScored)}} --}}
         <div class="card-header">
             <h3 class="card-title">Edit Match</h3>
         </div>
@@ -69,10 +70,29 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-8 col-md-8">
                         <div class="form-group">
-                            <label class="form-label">Team2 Score</label>
-                            <input type="text" name="team2_score" class="form-control" value="{{$match->team2_score}}">
+                            <label class="form-label">Scorer</label>
+                            <select id="player_id" class="player-select form-control">
+                                <option value="">Select Player</option>
+                                @foreach($players as $player)
+                                    <option value="{{$player->id}}">
+                                        {{$player->name}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="form-label">Goals Scored</label>
+                            <input type="number" id="goalsScored" class="form-control" value="{{$match->team2_score}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <label class="form-label">&nbsp;</label>
+                            <input type="button" id="addGoals" class="btn btn-primary btn-block" value="Add">
                         </div>
                     </div>
                 </div>
@@ -84,5 +104,76 @@
             </div>
         </form>
     </div>
+    @if($totGoalsScored!==$goalsRecorded)
+        <div class="alert alert-icon alert-danger" role="alert">
+            <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i>
+            Goals Scorer and Match Scores Doesn't tally
+        </div>
+    @else
+        <div class="alert alert-icon alert-success" role="alert">
+         <i class="fe fe-check mr-2" aria-hidden="true"></i> Goals Scorer and Match Scores tally
+        </div>
+    @endif
+    <div class="card">
+        <div class="card-header">Goals Scorer</div>
+        <div class="card-body">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Player</th>
+                        <th>Goals Scored</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($goalsScored as $goals)
+                    <tr>
+                        <td>{{$loop->index+1}}</td>
+                        <td>{{$goals->player->name}}</td>
+                        <td>{{$goals->goals}}</td>
+                        <td>
+                        <a href="/admin/remove-goals?playerID={{$goals->player_id}}&&matchID={{$goals->match_id}}">
+                            <i class="fe fe-delete"></i>
+                        </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+
+        </div>
+    </div>
 </div>
+@endsection
+@section('sub-scripts')
+<script>
+    window.onload=function(){
+       require(['jquery'],function($){
+           $(function(){
+               $('#addGoals').click(()=>{
+                   let player=$('#player_id').val();
+                   let goals=$('#goalsScored').val();
+                   if(!player || !goals){
+                       alert('player or goals missing');
+                       return;
+                   }
+                   $.post({
+                       url : '/admin/save-goals/',
+                       data : {
+                           matchID : {{$match->id}},
+                           playerID: player,
+                           goals : goals
+                       },
+                       success(resp){
+                           window.location.reload();
+                       }
+                   })
+               })
+               
+           })
+       })
+    }
+</script>
 @endsection

@@ -36,6 +36,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/edit_match/{match_id}', 'MatchController@editMatch')->name('editmatch');
     Route::post('/admin/update_match/{match_id}', 'MatchController@updateMatch')->name('updatematch');
     Route::get('/admin/delete_match/{match_id}', 'MatchController@deleteMatch')->name('deletematch');
+    Route::post('/admin/save-goals', 'MatchController@saveGoals')->name('saveGoals');
+    Route::get('/admin/remove-goals', 'MatchController@removeGoals')->name('removeGoals');
 });
 
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
@@ -54,4 +56,3 @@ Route::get('/lock-squad', 'HomeController@lockSquad');
 Route::get('/users/add-players/{player_id}', 'HomeController@addPlayers');
 Route::get('match/prediction/{world_cup_id}', 'MatchController@index')->name('matchPredictions');
 Route::post('match/prediction/set', 'MatchController@setUserMatchPrediction');
-

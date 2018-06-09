@@ -9,6 +9,8 @@ use App\UserMatchPrediction;
 use App\Team;
 use App\WorldCup;
 use App\Http\Requests\AddMatchRequest;
+use App\Player;
+use App\PlayerLog;
 class MatchController extends Controller
 {
     /**
@@ -94,8 +96,15 @@ class MatchController extends Controller
         }
         $teams = Team::get();
         $tournaments = WorldCup::get();
-        
-        return view('admin.editMatch', ['teams' => $teams, 'tournaments' => $tournaments, 'match' => $match]);
+        $goalsScored=PlayerLog::selectRaw('*,sum(goals_scored) as `goals`')
+                            ->whereMatchId($match->id)
+                            ->groupBy('player_id')->get();
+        $totGoalsScored=$goalsScored->reduce(function($carry,$item){
+            return abs($carry)+abs($item->goals);
+        },0);
+        $goalsRecorded=$match->team1_score+$match->team2_score;
+        $players=Player::whereIn('team_id',[$match->team1,$match->team2])->orderBy('team_id')->orderBy('name','ASC')->get();       
+        return view('admin.editMatch', compact('teams' ,'tournaments' , 'match','players','goalsScored','totGoalsScored','goalsRecorded'));
     }
     
     public function deleteMatch(Request $request, $match_id) {
@@ -123,5 +132,30 @@ class MatchController extends Controller
             $userMatchPrediction = UserMatchPrediction::where([['match_id', $params['match_id']],['user_id', $user->id]])->get()->first();
             $userMatchPrediction->update($params);
         }
+    }
+
+    public function saveGoals(){
+       $player_id=request('playerID');
+       $match_id=request('matchID');
+       $goals=request('goals');
+       if(!$player_id || !$match_id || !$goals){
+           return 'some values missing';
+       }
+       $log=PlayerLog::create([
+        'player_id'=>$player_id,
+        'match_id'=>$match_id,
+        'goals_scored'=>$goals
+       ]);
+       return $log;
+
+    }
+     public function removeGoals(){
+       $player_id=request('playerID');
+       $match_id=request('matchID');
+       if(!$player_id || !$match_id){
+           return redirect()->back()->with('error', 'some values missing');
+       }
+       PlayerLog::whereMatchId($match_id)->wherePlayerId($player_id)->delete();
+       return redirect()->back()->with('success','deleted goals scorer');
     }
 }
