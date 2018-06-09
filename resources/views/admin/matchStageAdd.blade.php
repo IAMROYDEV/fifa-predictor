@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <form action="/admin/match_stages" method="post" class="card">
+            <form action="/admin/match-stages" method="post" class="card">
                 @csrf
                 <div class="card-header">
                     <h3 class="card-title">Add Match Stage</h3>
@@ -30,7 +30,7 @@
             </div>
             <div class="card-footer text-right">
                 <div class="d-flex">
-                    <a href="/admin/match_stages/" class="btn btn-link">Cancel</a>
+                    <a href="/admin/match-stages/" class="btn btn-link">Cancel</a>
                     <button type="submit" class="btn btn-primary ml-auto">Send data</button>
                 </div>
             </div>

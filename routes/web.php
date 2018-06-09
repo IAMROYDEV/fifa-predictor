@@ -20,17 +20,21 @@ Auth::routes();
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
     Route::get('/admin/worldcup/{id}', 'AdminController@worldCupShow');
+    
+    Route::get('/admin/users', 'AdminController@admin_index')->name('admin.users.list');
+    Route::match(['put', 'post'], '/admin/users/{user_id}', 'AdminController@admin_update')->name('admin.users.update');
 
-    Route::get('/admin/global_settings', 'GlobalSettingsController@index')->name('admin.globalSettingsList');
-    Route::post('/admin/global_settings', 'GlobalSettingsController@store');
-    Route::match(['put', 'post'], '/admin/global_settings/{global_settings_id}', 'GlobalSettingsController@update');
+    Route::get('/admin/global-settings', 'GlobalSettingsController@index')->name('admin.globalSettingsList');
+    Route::post('/admin/global-settings', 'GlobalSettingsController@store');
+    Route::match(['put', 'post'], '/admin/global-settings/{global_settings_id}', 'GlobalSettingsController@update');
 
-    Route::get('/admin/match_stages', 'matchStagesController@index')->name('matchStageList');
-    Route::get('/admin/match_stages/add', 'matchStagesController@create');
-    Route::get('/admin/match_stages/edit/{match_stage_id}', 'matchStagesController@edit');
-    Route::match(['put', 'post'], '/admin/match_stages/{match_stage_id}', 'matchStagesController@update');
-    Route::get('/admin/match_stages/{match_stage_id}', 'matchStagesController@show');
-    Route::post('/admin/match_stages', 'matchStagesController@save');
+    Route::get('/admin/match-stages', 'matchStagesController@index')->name('matchStageList');
+    Route::get('/admin/match-stages/add', 'matchStagesController@create');
+    Route::get('/admin/match-stages/edit/{match_stage_id}', 'matchStagesController@edit');
+    Route::match(['put', 'post'], '/admin/match-stages/{match_stage_id}', 'matchStagesController@update');
+    Route::get('/admin/match-stages/{match_stage_id}', 'matchStagesController@show');
+    Route::post('/admin/match-stages', 'matchStagesController@save');
+
     Route::get('/admin/list_matches', 'MatchController@listMatches')->name('listmatches');
     Route::post('/admin/add_matches', 'MatchController@addMatches')->name('addmatches');
     Route::get('/admin/edit_match/{match_id}', 'MatchController@editMatch')->name('editmatch');
