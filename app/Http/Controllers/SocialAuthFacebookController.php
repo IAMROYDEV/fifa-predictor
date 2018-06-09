@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Socialite;
+use Auth;
 use App\Services\SocialFacebookAccountService;
 
 class SocialAuthFacebookController extends Controller
@@ -30,6 +31,10 @@ class SocialAuthFacebookController extends Controller
         }
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
         auth()->login($user);
-        return redirect()->route('user.dashboard');
+        if ($user->is_admin) {
+            return redirect()->route('admin');
+        } else {
+            return redirect()->route('user.dashboard');
+        }
     }
 }

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                 <h3 class="card-title">Invoices</h3>
-                <a href="/admin/match_stages/add" class="btn btn-default pull-right">Add</a>
+                <a href="/admin/match-stages/add" class="btn btn-default pull-right">Add</a>
                 </div>
                 <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">
@@ -29,7 +29,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="/admin/match_stages/{{$matchStage->id}}" class="text-inherit">
+                                    <a href="/admin/match-stages/{{$matchStage->id}}" class="text-inherit">
                                         {{$matchStage->title}}
                                     </a>
                                 </td>
@@ -40,7 +40,7 @@
                                     {{$matchStage->updated_at}}
                                 </td>
                                 <td>
-                                    <a class="icon" href="/admin/match_stages/edit/{{$matchStage->id}}">
+                                    <a class="icon" href="/admin/match-stages/edit/{{$matchStage->id}}">
                                         <i class="fe fe-edit"></i>
                                     </a>
                                 </td>

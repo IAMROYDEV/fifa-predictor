@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\updateGoalScored::class
+        Commands\updateGoalScored::class,
+        Commands\SetMatchLocked::class
     ];
 
     /**

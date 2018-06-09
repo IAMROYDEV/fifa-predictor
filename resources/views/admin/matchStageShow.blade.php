@@ -8,7 +8,7 @@
               <div class="card-header">
                 <h3 class="card-title">{{$matchStage->title}}</h3>
                 <div class="card-options">
-                  <a class="btn btn-primary" href="/admin/match_stages/edit/{{$matchStage->id}}"><i class="fe fe-edit"></i></a>
+                  <a class="btn btn-primary" href="/admin/match-stages/edit/{{$matchStage->id}}"><i class="fe fe-edit"></i></a>
                 </div>
               </div>
               <div class="card-body">
