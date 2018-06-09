@@ -272,6 +272,7 @@
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
                             } else {
+                                $('.add-ply-tbody .tr-'+playerId+' button').addClass('remove-squad');
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-trash mr-2"></i> Remove');
                                 $('.remove-ply-tbody').append(data);
                             }
