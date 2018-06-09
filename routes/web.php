@@ -25,3 +25,6 @@ Route::post('/home', 'HomeController@index')->name('selectteam');
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/worldcup/{id}', 'AdminController@worldCupShow');
 Route::get('/users/add-players/{player_id}', 'HomeController@addPlayers');
+Route::get('/users/select-captain/{captain_id}', 'HomeController@selectCaptain');
+
+Route::get('/lock-squad', 'HomeController@lockSquad');
