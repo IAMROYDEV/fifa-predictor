@@ -24,6 +24,8 @@ class UserDashboardController extends Controller
         $teams=Team::orderBy('name', 'ASC')->get();
         $players=Player::orderBy('team_id')->orderBy('name', 'ASC')->get();
         $changeField=request('change');
+        // \Session::flash('error', "Special message goes here");
+
         return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user'));
     }
 }

@@ -102,6 +102,13 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-sm-8 offset-md-2">
+                        @include('error')
+                    </div>
+                </div>
+            </div>
             @yield('content')
         </main>
         
