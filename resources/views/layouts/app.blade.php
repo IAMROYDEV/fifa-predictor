@@ -101,7 +101,7 @@
             </div>
         </nav>
 
-        @if(Auth::user()->is_admin == 1)
+        @if(isset(Auth::user()->is_admin) && Auth::user()->is_admin == 1)
         <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
             <div class="container">
               <div class="row align-items-center">
