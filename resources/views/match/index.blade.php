@@ -54,9 +54,9 @@
                         	</div>
                         	<div class="col-3 col-sm-3 col-md-2">
                             @if($match->user_team1_score !== null)
-                        		<input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team1_score}}" {{$match->locked === 0 ? '' : 'disabled'}}>
+                        		<input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team1_score}}" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @else
-                            <input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}}>
+                            <input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @endif
                         	</div>
                         	</div>
@@ -68,9 +68,9 @@
                        		</div>
                        		<div class="col-3 col-sm-3 col-md-2">
                             @if($match->user_team2_score !== null)
-								            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team2_score}}" {{$match->locked === 0 ? '' : 'disabled'}}>
+								            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team2_score}}" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @else
-                            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}}>
+                            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @endif
 
 							</div>
@@ -96,6 +96,7 @@ window.onload = function () {
           var _score1 = _formP.find('input[name="team1_score"]').val();
           var _score2 = _formP.find('input[name="team2_score"]').val();
           if (_score1 != '' && _score2 != '') {
+            _formP.find('.card-body').removeClass('border border-success');
             $.ajax({
               type : 'POST',
               url : _formP.attr("action"),
