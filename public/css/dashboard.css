@@ -18616,3 +18616,7 @@ svg {
 .fe-zoom-out:before {
   content: "\ea06";
 }
+.button-right{
+  position:absolute;
+  right:10px;
+}
