@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <form action="/admin/match_stages/{{$matchStage->id}}" method="post" class="card">
+            <form action="/admin/match-stages/{{$matchStage->id}}" method="post" class="card">
                 @method('PUT')
                 @csrf
                 <div class="card-header">
@@ -31,7 +31,7 @@
             </div>
             <div class="card-footer text-right">
                 <div class="d-flex">
-                    <a href="/admin/match_stages/" class="btn btn-link">Cancel</a>
+                    <a href="/admin/match-stages/" class="btn btn-link">Cancel</a>
                     <button type="submit" class="btn btn-primary ml-auto">Send data</button>
                 </div>
             </div>

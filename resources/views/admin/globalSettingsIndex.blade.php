@@ -4,7 +4,7 @@
 <div class="container">
     <div class"row justify-content-center">
         <div class="col-md-12">
-            <form action="/admin/global_settings" method="post" class="card">
+            <form action="/admin/global-settings" method="post" class="card">
                 @csrf
                 <div class="card-header">
                     <h3 class="card-title">Add new global settings key</h3>
@@ -46,16 +46,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Projects</h2>
+                    <h2 class="card-title">Global Settings</h2>
                 </div>
                 <table class="table card-table">
                     @foreach($globalSettings as $globalSetting)
                         <tr>
                             <td>{{$globalSetting->rule}}</td>
                             <td class="text-right">
-                            <span class="badge badge-default">
+                            <span class="">
                                 <label class="custom-switch">
-                                    <form action="/admin/global_settings/{{$globalSetting->id}}" method="post" class="card" id="global-setting-form-{{$globalSetting->id}}">
+                                    <form action="/admin/global-settings/{{$globalSetting->id}}" method="post" id="global-setting-form-{{$globalSetting->id}}">
                                         @method('PUT')
                                         @csrf
                                         <input type="checkbox" name="flag" class="custom-switch-input global-setting-checkbox" {{$globalSetting->flag ? 'checked':''}}>
