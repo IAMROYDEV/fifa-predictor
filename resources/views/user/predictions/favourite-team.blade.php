@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <?php $data=$predictions->where('predictor','favourite team')->first(); ?>
-         @if($changeField!=='favourite team'  && $predictions->contains('predictor','favourite team'))
+         @if($changeField!=='favourite team'  && $data)
          <div class="row">
              <div class="col-sm-12 text-center">
                  <h1>{{$data->team->name}}</h1>
@@ -28,7 +28,9 @@
                    <option value="">Select Team</option>
                     @foreach($teams as $team)
                     {{-- {{ ($slectedCode == $team->code ? "selected":"") }} --}}
-                        <option value="{{$team->id}}" data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}' >
+                        <option value="{{$team->id}}" 
+                            {{ ($data && $data->team_id == $team->id ? "selected":"") }}
+                            data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}' >
                             {{str_replace('_',' ',$team->name)}}
                         </option>
                     @endforeach

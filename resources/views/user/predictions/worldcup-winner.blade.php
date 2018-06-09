@@ -1,11 +1,18 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','world cup winner')}}
 <div class="card">
-    <div class="card-header">World Cup Winners</div>
+    <div class="card-header">
+        World Cup Winners
+        @if($allowChange)
+        <a href="?change=world cup winner" class="btn btn-success button-right">
+            <i class="fe fe-plus-square"></i>  Change
+        </a>
+        @endif
+    </div>
     <div class="card-body">
-         @if($predictions->contains('predictor','world cup winner'))
+        <?php $data=$predictions->where('predictor','world cup winner')->first(); ?>
+         @if($changeField!=='world cup winner' && $data)
          <div class="row">
-             <?php $data=$predictions->where('predictor','world cup winner')->first(); ?>
              <div class="col-sm-12 text-center">
                  <h1>{{$data->team->name}}</h1>
              </div>
@@ -20,7 +27,9 @@
                    <option value="">Select Team</option>
                     @foreach($teams as $team)
                     {{-- {{ ($slectedCode == $team->code ? "selected":"") }} --}}
-                        <option value="{{$team->id}}" data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}' >
+                        <option value="{{$team->id}}" 
+                            {{ ($data && $data->team_id == $team->id ? "selected":"") }}
+                            data-data='{"image":"/assets/images/flags/{{$team->code}}.svg"}' >
                             {{str_replace('_',' ',$team->name)}}
                         </option>
                     @endforeach

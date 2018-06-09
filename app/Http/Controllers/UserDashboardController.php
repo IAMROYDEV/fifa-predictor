@@ -17,6 +17,8 @@ class UserDashboardController extends Controller
         $allowChange=GlobalSetting::whereRule('GLOBAL_PREDICTION_ALLOW_CHANGE')->first();
         if ($allowChange && $allowChange->flag) {
             $allowChange=true;
+        } else {
+            $allowChange=false;
         }
         $teams=Team::orderBy('name', 'ASC')->get();
         $players=Player::orderBy('team_id')->orderBy('name', 'ASC')->get();
