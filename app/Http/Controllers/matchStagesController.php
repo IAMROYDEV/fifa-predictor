@@ -36,9 +36,9 @@ class matchStagesController extends Controller
     }
 
     public function save(Request $request)
-    {   
+    {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:match_stages|max:2',
+            'title' => 'required|unique:match_stages|min:2',
         ]);
         
         if ($validator->fails()) {
@@ -56,7 +56,7 @@ class matchStagesController extends Controller
     }
 
     public function edit($id)
-    {   
+    {
         $matchStage = matchstage::findOrFail($id);
         return view('admin.matchStageEdit', ['matchStage' => $matchStage]);
     }
@@ -64,7 +64,7 @@ class matchStagesController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:match_stages|max:2',
+            'title' => 'required|unique:match_stages|min:2',
         ]);
 
         if ($validator->fails()) {
@@ -80,5 +80,4 @@ class matchStagesController extends Controller
             return redirect()->route('matchStageList');
         }
     }
-
 }

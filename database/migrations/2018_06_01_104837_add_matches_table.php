@@ -35,7 +35,7 @@ class AddMatchesTable extends Migration
             $table->integer('team1_score')->nullable();
             $table->integer('team2_score')->nullable();
             $table->integer('user_id');
-            $table->interger('points')->nullable();
+            $table->integer('points')->nullable();
             $table->timestamps();
         });
         Schema::create('match_stages', function ($table) {
