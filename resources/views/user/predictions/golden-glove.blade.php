@@ -1,13 +1,21 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','golden glove')}}
 <div class="card">
-    <div class="card-header">Golden Glove Winner</div>
+    <div class="card-header">
+        Golden Glove Winner
+        @if($allowChange)
+            <a href="?change=golden glove" class="btn btn-success button-right">
+                <i class="fe fe-plus-square"></i>  Change
+            </a>
+        @endif
+    </div>
     <div class="card-body">
-        @if($predictions->contains('predictor','golden glove'))
         <?php $data=$predictions->where('predictor','golden glove')->first(); ?>
+        @if($changeField!=='golden glove' && $data)
              <div class="row">
                  <div class="col-sm-2 text-center">
-                 <img src="/assets/images/flags/{{$data->player->team->code}}.svg" alt="">
+                 <img src="/assets/images/flags/{{$data->player->team->code}}.svg" alt=""
+                 title="{{$data->player->team->name}}">
                 </div>
                 <div class="col-sm-8 text-center">
                     <h1>{{$data->player->name}}</h1>
@@ -20,7 +28,9 @@
                    <option value="">Select Team</option>
                     @foreach($players as $player)
                     {{-- {{ ($slectedCode == $player->code ? "selected":"") }} --}}
-                        <option value="{{$player->id}}" data-data='{"image":"/assets/images/flags/{{$player->team->code}}.svg"}' >
+                        <option value="{{$player->id}}" 
+                            {{ ($data && $data->player_id == $player->id ? "selected":"") }}
+                            data-data='{"image":"/assets/images/flags/{{$player->team->code}}.svg"}' >
                             {{str_replace('_',' ',$player->name)}}
                         </option>
                     @endforeach

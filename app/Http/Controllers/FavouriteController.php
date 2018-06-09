@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserGlobalPrediction;
+use App\GlobalSetting;
 
 class FavouriteController extends Controller
 {
     public function save()
     {
+        $allowChange=GlobalSetting::whereRule('GLOBAL_PREDICTION_ALLOW_CHANGE')->first();
         $predictor=request('predictor');
         $user=auth()->user();
         $team_id=request('team_id');
@@ -16,6 +18,9 @@ class FavouriteController extends Controller
         if (!$predictor || !$user || (!$team_id && !$player_id)) {
             // dd(request()->all());
             return redirect()->back()->with('error', 'team or player missing');
+        }
+        if (!$allowChange || !$allowChange->flag) {
+            return redirect()->route('user.dashboard')->with('error', 'change disabled');
         }
         $prediction=UserGlobalPrediction::wherePredictor($predictor)->where(function ($query) use ($player_id,$team_id) {
             $query->where('player_id', $player_id)
@@ -34,6 +39,6 @@ class FavouriteController extends Controller
             ]);
         }
         
-        return redirect()->back()->with('success', "{$predictor} chosen successfully");
+        return redirect()->route('user.dashboard')->with('success', "{$predictor} chosen successfully");
     }
 }
