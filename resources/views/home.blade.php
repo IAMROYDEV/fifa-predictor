@@ -207,7 +207,7 @@
                     var totalPlayer = jQuery('.remove-ply-tbody tr').length;
                     
                     if(!(jQuery(this).hasClass('remove-squad')) && totalPlayer == 11) {
-                        alert('Maximum 11 players needs to be selected!');
+                        alert('Maximum 11 players allowed!');
                         return;
                     }
                     selectplayer(playerId);
