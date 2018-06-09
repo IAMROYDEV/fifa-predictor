@@ -248,6 +248,7 @@
                                     return;
                                 } else {
                                     //redirect to dashboard
+                                    window.location.reload();
                                 }
                             }
                         });
