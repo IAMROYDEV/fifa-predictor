@@ -27,11 +27,15 @@
 			<form class="card prediction-form" action="/match/prediction/set" method="post">
                       @csrf
                       <input type="hidden" name="match_id" value="{{$match->id}}">
-                      <div class="card-body p-3">
+                      <div class="card-body p-3
+                       {{$match->user_team1_score !== null && $match->user_team2_score !== null ? 'border border-success':''}}">
                         <div class="text-muted mb-4">
                           {{$match->matchStage->title}}
 						              @if($match->played_date):
                           {{date('D, d/m h:i A', strtotime($match->played_date))}}
+                          @endif
+                          @if($match->locked)
+                          <i class="fe fe-lock"></i>
                           @endif
                         </div>
                         <div class="h5 mb-4 form-group">
@@ -41,9 +45,9 @@
                         	</div>
                         	<div class="col-3 col-sm-3 col-md-2">
                             @if($match->user_team1_score !== null)
-                        		<input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team1_score}}">
+                        		<input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team1_score}}" {{$match->locked === 0 ? '' : 'disabled'}}>
                             @else
-                            <input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link">
+                            <input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}}>
                             @endif
                         	</div>
                         	</div>
@@ -55,9 +59,9 @@
                        		</div>
                        		<div class="col-3 col-sm-3 col-md-2">
                             @if($match->user_team2_score !== null)
-								            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team2_score}}">
+								            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team2_score}}" {{$match->locked === 0 ? '' : 'disabled'}}>
                             @else
-                            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link">
+                            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}}>
                             @endif
 
 							</div>
@@ -80,11 +84,18 @@ window.onload = function () {
       });
       $( ".prediction-form input" ).change(function() {
           var _formP = $(this).closest("form");
-          $.ajax({
-            type : 'POST',
-            url : _formP.attr("action"),
-            data : _formP.serialize()
-          });
+          var _score1 = _formP.find('input[name="team1_score"]').val();
+          var _score2 = _formP.find('input[name="team2_score"]').val();
+          if (_score1 != '' && _score2 != '') {
+            $.ajax({
+              type : 'POST',
+              url : _formP.attr("action"),
+              data : _formP.serialize(),
+              success: function(data) {
+                _formP.find('.card-body').addClass('border border-success');
+              }
+            });
+          }
       });
     });
 }
