@@ -41,7 +41,7 @@
         @else
         <div class="row">
             <div class="col text-center">
-                <a href="/home" class="btn btn-pill btn-secondary ">
+                <a href="{{route('userSquad')}}" class="btn btn-pill btn-secondary ">
                     <i class="fe fe-users"></i>
                     Create or lock your squad
                 </a>

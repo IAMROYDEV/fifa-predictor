@@ -41,8 +41,8 @@ Route::middleware(['admin'])->group(function () {
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home', 'HomeController@index')->name('selectteam');
+Route::get('/users-squad', 'HomeController@index')->name('userSquad');
+Route::post('/users-squad', 'HomeController@index')->name('selectteam');
 
 Route::get('/dashboard', 'UserDashboardController@index')->name('user.dashboard');
 Route::post('/favourite', 'FavouriteController@save')->name('user.favourite');

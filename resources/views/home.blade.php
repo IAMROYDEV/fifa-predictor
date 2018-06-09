@@ -262,7 +262,8 @@
                                     return;
                                 } else {
                                     //redirect to dashboard
-                                    window.location.reload();
+                                    window.location.href = "{{route('user.dashboard')}}"
+//                                    window.location.reload();
                                 }
                             }
                         });
