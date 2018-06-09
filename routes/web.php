@@ -44,3 +44,9 @@ Route::get('match/prediction/{world_cup_id}', 'MatchController@index')->name('ma
 Route::post('match/prediction/set', 'MatchController@setUserMatchPrediction');
 Route::get('/admin/global_settings', 'GlobalSettingsController@index')->name('admin.globalSettingsList');
 Route::post('/admin/global_settings', 'GlobalSettingsController@store');
+
+Route::get('/admin/list_matches', 'MatchController@listMatches')->name('listmatches');
+Route::post('/admin/add_matches', 'MatchController@addMatches')->name('addmatches');
+Route::get('/admin/edit_match/{match_id}', 'MatchController@editMatch')->name('editmatch');
+Route::post('/admin/update_match/{match_id}', 'MatchController@updateMatch')->name('updatematch');
+Route::get('/admin/delete_match/{match_id}', 'MatchController@deleteMatch')->name('deletematch');

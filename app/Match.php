@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Match extends Model
 {
+    protected $guarded =[] ;
     public function teamA()
     {
         return $this->belongsTo(Team::class, 'team1');
