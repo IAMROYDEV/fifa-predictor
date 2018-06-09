@@ -40,3 +40,5 @@ Route::match(['put', 'post'], '/admin/match_stages/{match_stage_id}', 'matchStag
 Route::get('/admin/match_stages/{match_stage_id}', 'matchStagesController@show');
 Route::post('/admin/match_stages', 'matchStagesController@save');
 Route::get('/users/add-players/{player_id}', 'HomeController@addPlayers');
+Route::get('/admin/global_settings', 'GlobalSettingsController@index')->name('admin.globalSettingsList');
+Route::post('/admin/global_settings', 'GlobalSettingsController@store');
