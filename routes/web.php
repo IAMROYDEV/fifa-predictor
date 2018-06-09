@@ -34,6 +34,12 @@ Route::middleware(['admin'])->group(function () {
     Route::match(['put', 'post'], '/admin/match-stages/{match_stage_id}', 'matchStagesController@update');
     Route::get('/admin/match-stages/{match_stage_id}', 'matchStagesController@show');
     Route::post('/admin/match-stages', 'matchStagesController@save');
+
+    Route::get('/admin/list_matches', 'MatchController@listMatches')->name('listmatches');
+    Route::post('/admin/add_matches', 'MatchController@addMatches')->name('addmatches');
+    Route::get('/admin/edit_match/{match_id}', 'MatchController@editMatch')->name('editmatch');
+    Route::post('/admin/update_match/{match_id}', 'MatchController@updateMatch')->name('updatematch');
+    Route::get('/admin/delete_match/{match_id}', 'MatchController@deleteMatch')->name('deletematch');
 });
 
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');

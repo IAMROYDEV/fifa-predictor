@@ -1,16 +1,16 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','golden ball')}}
 <div class="card">
+    <?php $data=$predictions->where('predictor','golden ball')->first(); ?>
     <div class="card-header">
         Golden Ball Winner
-        @if($allowChange)
+        @if($allowChange && $data)
             <a href="?change=golden ball" class="btn btn-success button-right">
                 <i class="fe fe-plus-square"></i>  Change
             </a>
         @endif
     </div>
     <div class="card-body">
-        <?php $data=$predictions->where('predictor','golden ball')->first(); ?>
          @if($changeField!=='golden ball' && $data)
              <div class="row">
                  <div class="col-sm-2 text-center">

@@ -1,16 +1,16 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','world cup winner')}}
 <div class="card">
+    <?php $data=$predictions->where('predictor','world cup winner')->first(); ?>
     <div class="card-header">
         World Cup Winners
-        @if($allowChange)
+        @if($allowChange && $data)
         <a href="?change=world cup winner" class="btn btn-success button-right">
             <i class="fe fe-plus-square"></i>  Change
         </a>
         @endif
     </div>
     <div class="card-body">
-        <?php $data=$predictions->where('predictor','world cup winner')->first(); ?>
          @if($changeField!=='world cup winner' && $data)
          <div class="row">
              <div class="col-sm-12 text-center">
