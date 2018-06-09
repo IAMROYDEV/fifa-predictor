@@ -41,10 +41,10 @@ class HomeController extends Controller
                     $slectedCode = $team->code;
                     $players  = Player::where('team_id', $team->id)->get();
                 } else {
-                    $players = Player::all();
+                    $players = Player::orderBy('goals', 'DESC')->get();
                 }
             } else {
-                $players = Player::all();
+                $players = Player::orderBy('goals', 'DESC')->get();
             }
             
             return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'user' => Auth::user()]);

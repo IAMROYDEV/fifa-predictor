@@ -39,6 +39,11 @@
             </div>
         </form>
     </div>
+    
+    <div class="alert alert-icon alert-danger" role="alert">
+        <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> Your squad is currently not locked. To enroll your squad in the tournament it needs to be locked.
+        For further information read our <a href="/rules">Rules.</a>
+      </div>
     @endif
     <div class="row">
         @if(!$user->is_team_locked)
