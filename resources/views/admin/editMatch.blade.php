@@ -46,7 +46,6 @@
                         <div class="form-group">
                             <label class="form-label">Team2</label>
                             <select name="team2" class="form-control custom-select">
-                                <option value="all" data-data=''> -- Select team2 -- </option>
                                 @foreach($teams as $team)
                                 <option value="{{$team->id}}" {{ ($team->id == $match->team2 ? "selected":"") }}>
                                     {{str_replace('_',' ',$team->name)}}
@@ -63,6 +62,13 @@
                             <input type="text" name="team1_score" class="form-control" value="{{$match->team1_score}}">
                         </div>
                     </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Team2 Score</label>
+                            <input type="text" name="team2_score" class="form-control" value="{{$match->team2_score}}">
+                        </div>
+                    </div>
+                    <hr>
                     <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">Team2 Score</label>
