@@ -29,6 +29,8 @@
                       <input type="hidden" name="match_id" value="{{$match->id}}">
                       <div class="card-body p-3
                        {{$match->user_team1_score !== null && $match->user_team2_score !== null ? 'border border-success':''}}">
+                       <div class="row">
+                        <div class="col-9 col-sm-9 col-md-10">
                         <div class="text-muted mb-4">
                           {{$match->matchStage->title}}
 						              @if($match->played_date):
@@ -38,6 +40,13 @@
                           <i class="fe fe-lock"></i>
                           @endif
                         </div>
+                        </div>
+                        <div class="col-3 col-sm-3 col-md-2 alert-link text-center">
+                          @if($match->user_points !== null)
+                          {{$match->user_points}}<i class="fe fe-star"></i>
+                          @endif
+                        </div>
+                      </div>
                         <div class="h5 mb-4 form-group">
                         	<div class="row">
                         	<div class="col-9 col-sm-9 col-md-10">
