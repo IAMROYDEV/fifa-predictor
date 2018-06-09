@@ -55,9 +55,12 @@
                             <td class="text-right">
                             <span class="badge badge-default">
                                 <label class="custom-switch">
-                                    <input type="hidden" name="setting_id" value="{{$globalSetting->id}}">
-                                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" {{$globalSetting->flag ? 'checked':''}} onChange="updateFlag(this);">
-                                    <span class="custom-switch-indicator"></span>
+                                    <form action="/admin/global_settings/{{$globalSetting->id}}" method="post" class="card" id="global-setting-form-{{$globalSetting->id}}">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="checkbox" name="flag" class="custom-switch-input global-setting-checkbox" {{$globalSetting->flag ? 'checked':''}}>
+                                        <span class="custom-switch-indicator"></span>
+                                    </form>
                                 </label>
                             </span>
                             </td>
@@ -72,14 +75,15 @@
 
 @section('sub-scripts')
 <script>
-// $(document).ready(function(){
-//     $(document).on('change','.checkbox',function(){
-//         $(this).hide();
-//     });
-// });
+    setTimeout(() => {
+        require(['jquery'],function($){
+            $(function(){
+                $(document).on('change', '.global-setting-checkbox', function() {
+                    $(this).closest('form').submit();
+                });
+            })
+        })
+    }, 1000);
 
-function updateFlag(ele) {
-    console.log(ele.value);
-}
 </script>
 @endsection
