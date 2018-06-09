@@ -15,6 +15,7 @@
     
     <script src="{{ asset('assets/js/require.min.js') }}" defer></script>
     <script src="{{ asset('js/dashboard.js') }}" defer></script>
+    <script src="{{ asset('js/prediction.js') }}" defer></script>
     
     
     
@@ -103,60 +104,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <script>
-            window.load = function () {
-                require(['jquery', 'selectize'], function ($, selectize) {
-                    $(document).ready(function () {
-                        $('#input-tags').selectize({
-                            delimiter: ',',
-                            persist: false,
-                            create: function (input) {
-                                return {
-                                    value: input,
-                                    text: input
-                                }
-                            }
-                        });
-                
-                        $('#select-beast').selectize({});
-                
-                        $('#select-users').selectize({
-                            render: {
-                                option: function (data, escape) {
-                                    return '<div>' +
-                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
-                                        '<span class="title">' + escape(data.text) + '</span>' +
-                                        '</div>';
-                                },
-                                item: function (data, escape) {
-                                    return '<div>' +
-                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
-                                        escape(data.text) +
-                                        '</div>';
-                                }
-                            }
-                        });
-                
-                        $('#select-countries').selectize({
-                            render: {
-                                option: function (data, escape) {
-                                    return '<div>' +
-                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
-                                        '<span class="title">' + escape(data.text) + '</span>' +
-                                        '</div>';
-                                },
-                                item: function (data, escape) {
-                                    return '<div>' +
-                                        '<span class="image"><img src="' + data.image + '" alt=""></span>' +
-                                        escape(data.text) +
-                                        '</div>';
-                                }
-                            }
-                        });
-                    });
-                });
-                }
-              </script>
+        
     </div>
     @yield('sub-scripts')
 </body>

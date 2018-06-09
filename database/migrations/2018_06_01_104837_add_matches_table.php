@@ -31,15 +31,16 @@ class AddMatchesTable extends Migration
             $table->increments('id');
             $table->integer('match_id');
             $table->integer('winning_team')->nullable();
-            $table->boolean('is_draw');
+            $table->boolean('is_draw')->nullable();
             $table->integer('team1_score')->nullable();
             $table->integer('team2_score')->nullable();
             $table->integer('user_id');
+            $table->interger('points')->nullable();
             $table->timestamps();
         });
         Schema::create('match_stages', function ($table) {
             $table->increments('id');
-            $table->integer('title');
+            $table->string('title');
             $table->timestamps();
         });
         Schema::table('player_logs', function ($table) {
