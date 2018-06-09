@@ -30,3 +30,5 @@ Route::get('/users/add-players/{player_id}', 'HomeController@addPlayers');
 
 Route::get('/dashboard', 'UserDashboardController@index')->name('user.dashboard');
 Route::post('/favourite', 'FavouriteController@save')->name('user.favourite');
+Route::get('/admin/global_settings', 'GlobalSettingsController@index')->name('admin.globalSettingsList');
+Route::post('/admin/global_settings', 'GlobalSettingsController@store');
