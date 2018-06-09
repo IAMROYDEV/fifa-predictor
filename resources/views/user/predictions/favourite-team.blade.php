@@ -1,17 +1,17 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','favourite team')}}
 <div class="card">
+    <?php $data=$predictions->where('predictor','favourite team')->first(); ?>
     
     <div class="card-header">
         Your Favourite Team
-        @if($allowChange)
+        @if($allowChange && $data)
             <a href="?change=favourite team" class="btn btn-success button-right">
                 <i class="fe fe-plus-square"></i>  Change
             </a>
         @endif
     </div>
     <div class="card-body">
-        <?php $data=$predictions->where('predictor','favourite team')->first(); ?>
          @if($changeField!=='favourite team'  && $data)
          <div class="row">
              <div class="col-sm-12 text-center">
