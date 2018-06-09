@@ -41,10 +41,10 @@ class HomeController extends Controller
                     $slectedCode = $team->code;
                     $players  = Player::where('team_id', $team->id)->get();
                 } else {
-                    $players = Player::all();
+                    $players = Player::orderBy('goals', 'DESC')->get();
                 }
             } else {
-                $players = Player::all();
+                $players = Player::orderBy('goals', 'DESC')->get();
             }
             
             return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'user' => Auth::user()]);
@@ -66,6 +66,13 @@ class HomeController extends Controller
                 'results' => 0,
             ], 200);
         } else {
+            if($user->players()->count() == 11) {
+                return response()->json([
+                    'status'  => 400,
+                    'message' => 'Maximum 11 players allowed!',
+                    'results' => 0,
+                ], 400);
+            }
             $user->players()->attach($player_id);
             $player = Player::find($player_id);
             return view('partial.addPlayers', ['player' => $player]);
@@ -86,6 +93,20 @@ class HomeController extends Controller
     
     public function lockSquad(Request $request) {
         $user = Auth::user();
+        if($user->players()->count() < 11) {
+            return response()->json([
+                    'status'  => 400,
+                    'message' => 'Please select 11 players to lock the team!',
+                    'results' => 0,
+                ], 400);
+        }
+        if(!$user->player_id) {
+            return response()->json([
+                    'status'  => 400,
+                    'message' => 'Please select captain for your team!!',
+                    'results' => 0,
+                ], 400);
+        }
         $user->is_team_locked = 1;;
         $user->save();
         return response()->json([

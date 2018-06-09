@@ -39,6 +39,11 @@
             </div>
         </form>
     </div>
+    
+    <div class="alert alert-icon alert-danger" role="alert">
+        <i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> Your squad is currently not locked. To enroll your squad in the tournament it needs to be locked.
+        For further information read our <a href="/rules">Rules.</a>
+      </div>
     @endif
     <div class="row">
         @if(!$user->is_team_locked)
@@ -84,6 +89,9 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Your Players</h3>
+                    @if(!$user->is_team_locked)
+                    <div class="row button-right" style=" right: 30px;"><button class="btn btn-pill btn-secondary lock-team"><i class="fe fe-lock mr-2"></i>Lock the team</button></div>
+                    @endif
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">
@@ -199,6 +207,12 @@
 
                 jQuery('#select-players').change(function() {
                     var playerId = parseInt($( this ).val());
+                    var totalPlayer = jQuery('.remove-ply-tbody tr').length;
+                    
+                    if(!(jQuery(this).hasClass('remove-squad')) && totalPlayer == 11) {
+                        alert('Maximum 11 players allowed!');
+                        return;
+                    }
                     selectplayer(playerId);
                 });
 
@@ -207,7 +221,7 @@
                     var totalPlayer = jQuery('.remove-ply-tbody tr').length;
                     
                     if(!(jQuery(this).hasClass('remove-squad')) && totalPlayer == 11) {
-                        alert('Maximum 11 players needs to be selected!');
+                        alert('Maximum 11 players allowed!');
                         return;
                     }
                     selectplayer(playerId);
@@ -248,6 +262,7 @@
                                     return;
                                 } else {
                                     //redirect to dashboard
+                                    window.location.reload();
                                 }
                             }
                         });
@@ -265,6 +280,7 @@
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
                             } else {
+                                $('.add-ply-tbody .tr-'+playerId+' button').addClass('remove-squad');
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-trash mr-2"></i> Remove');
                                 $('.remove-ply-tbody').append(data);
                             }

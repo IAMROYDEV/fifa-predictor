@@ -25,6 +25,11 @@ Route::post('/home', 'HomeController@index')->name('selectteam');
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/worldcup/{id}', 'AdminController@worldCupShow');
 
+
+
+Route::get('/dashboard', 'UserDashboardController@index')->name('user.dashboard');
+Route::post('/favourite', 'FavouriteController@save')->name('user.favourite');
+
 Route::get('/users/select-captain/{captain_id}', 'HomeController@selectCaptain');
 
 Route::get('/lock-squad', 'HomeController@lockSquad');
@@ -37,3 +42,5 @@ Route::post('/admin/match_stages', 'matchStagesController@save');
 Route::get('/users/add-players/{player_id}', 'HomeController@addPlayers');
 Route::get('match/prediction/{world_cup_id}', 'MatchController@index');
 Route::post('match/prediction/set', 'MatchController@setUserMatchPrediction');
+Route::get('/admin/global_settings', 'GlobalSettingsController@index')->name('admin.globalSettingsList');
+Route::post('/admin/global_settings', 'GlobalSettingsController@store');
