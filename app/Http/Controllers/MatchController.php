@@ -11,6 +11,16 @@ use App\WorldCup;
 use App\Http\Requests\AddMatchRequest;
 class MatchController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request, $worldCupId)
     {
         $stageSelected= 0;
@@ -108,7 +118,10 @@ class MatchController extends Controller
     {
         $params = $request->all();
         $user =  auth()->user();
-        $userMatchPrediction = UserMatchPrediction::where([['match_id', $params['match_id']],['user_id', $user->id]])->get()->first();
-        $userMatchPrediction->update($params);
+        $match = Match::find($params['match_id']);
+        if ($match->locked === 0) {
+            $userMatchPrediction = UserMatchPrediction::where([['match_id', $params['match_id']],['user_id', $user->id]])->get()->first();
+            $userMatchPrediction->update($params);
+        }
     }
 }

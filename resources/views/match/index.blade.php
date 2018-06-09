@@ -27,13 +27,26 @@
 			<form class="card prediction-form" action="/match/prediction/set" method="post">
                       @csrf
                       <input type="hidden" name="match_id" value="{{$match->id}}">
-                      <div class="card-body p-3">
+                      <div class="card-body p-3
+                       {{$match->user_team1_score !== null && $match->user_team2_score !== null ? 'border border-success':''}}">
+                       <div class="row">
+                        <div class="col-9 col-sm-9 col-md-10">
                         <div class="text-muted mb-4">
                           {{$match->matchStage->title}}
 						              @if($match->played_date):
                           {{date('D, d/m h:i A', strtotime($match->played_date))}}
                           @endif
+                          @if($match->locked)
+                          <i class="fe fe-lock"></i>
+                          @endif
                         </div>
+                        </div>
+                        <div class="col-3 col-sm-3 col-md-2 alert-link text-center">
+                          @if($match->user_points !== null)
+                          {{$match->user_points}}<i class="fe fe-star"></i>
+                          @endif
+                        </div>
+                      </div>
                         <div class="h5 mb-4 form-group">
                         	<div class="row">
                         	<div class="col-9 col-sm-9 col-md-10">
@@ -41,9 +54,9 @@
                         	</div>
                         	<div class="col-3 col-sm-3 col-md-2">
                             @if($match->user_team1_score !== null)
-                        		<input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team1_score}}">
+                        		<input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team1_score}}" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @else
-                            <input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link">
+                            <input name="team1_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @endif
                         	</div>
                         	</div>
@@ -55,9 +68,9 @@
                        		</div>
                        		<div class="col-3 col-sm-3 col-md-2">
                             @if($match->user_team2_score !== null)
-								            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team2_score}}">
+								            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" value="{{$match->user_team2_score}}" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @else
-                            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link">
+                            <input name="team2_score" type="text" data-mask="00" class="form-control text-center alert-link" {{$match->locked === 0 ? '' : 'disabled'}} onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                             @endif
 
 							</div>
@@ -80,11 +93,19 @@ window.onload = function () {
       });
       $( ".prediction-form input" ).change(function() {
           var _formP = $(this).closest("form");
-          $.ajax({
-            type : 'POST',
-            url : _formP.attr("action"),
-            data : _formP.serialize()
-          });
+          var _score1 = _formP.find('input[name="team1_score"]').val();
+          var _score2 = _formP.find('input[name="team2_score"]').val();
+          if (_score1 != '' && _score2 != '') {
+            _formP.find('.card-body').removeClass('border border-success');
+            $.ajax({
+              type : 'POST',
+              url : _formP.attr("action"),
+              data : _formP.serialize(),
+              success: function(data) {
+                _formP.find('.card-body').addClass('border border-success');
+              }
+            });
+          }
       });
     });
 }

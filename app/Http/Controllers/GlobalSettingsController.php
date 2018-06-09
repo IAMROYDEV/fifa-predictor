@@ -38,7 +38,9 @@ class GlobalSettingsController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+    {   
+        $params = $request->all();
+
         $globalSetting = GlobalSetting::find($id);
         $globalSetting->flag = isset($params['flag']) ? 1:0;
         
