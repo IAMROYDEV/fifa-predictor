@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -22,7 +25,8 @@
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
-        "files":["app/function.php"
+        "files": [
+            "app/function.php"
         ],
         "classmap": [
             "database/seeds",
@@ -39,8 +43,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
@@ -53,6 +56,9 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "deploy:production": [
+            "ssh -t workspex@fifa8teen.com 'cd /home/workspex/fifa && git pull origin master && composer install && php artisan migrate'"
         ]
     },
     "config": {
