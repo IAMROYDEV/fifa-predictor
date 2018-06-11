@@ -1,6 +1,6 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','golden glove')}}
-<?php $data=$predictions->where('predictor','golden glove')->first(); ?>
+<?php $data=$predictions->where('predictor', 'golden glove')->first(); ?>
 <div class="card">
     <div class="card-header">
         Golden Glove Winner
@@ -9,7 +9,7 @@
                 <i class="fe fe-plus-square"></i>  Change
             </a>
         @endif
-        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Predict who will win the Golden Ball and earn bonus 100 points!!"></i>
+        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Predict who will win the Golden Glove 🧤 and earn bonus 100⭐ points!!"></i>
     </div>
     <div class="card-body">
         @if($changeField!=='golden glove' && $data)

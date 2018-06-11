@@ -1,7 +1,7 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','world cup winner')}}
 <div class="card">
-    <?php $data=$predictions->where('predictor','world cup winner')->first(); ?>
+    <?php $data=$predictions->where('predictor', 'world cup winner')->first(); ?>
     <div class="card-header">
         World Cup Winners
         @if($allowChange && $data)
@@ -9,7 +9,7 @@
             <i class="fe fe-plus-square"></i>  Change
         </a>
         @endif
-        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Predict who will win the 2018 FIFA world cup and earn bonus 120 points!!"></i>
+        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Predict who will win the 2018 FIFA world cup 🏆 and earn bonus 120⭐ points!!"></i>
     </div>
     <div class="card-body">
          @if($changeField!=='world cup winner' && $data)

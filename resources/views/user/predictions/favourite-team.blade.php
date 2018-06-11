@@ -1,7 +1,7 @@
 {{Form::open(['route'=>'user.favourite'])}}
 {{Form::hidden('predictor','favourite team')}}
 <div class="card">
-    <?php $data=$predictions->where('predictor','favourite team')->first(); ?>
+    <?php $data=$predictions->where('predictor', 'favourite team')->first(); ?>
     
     <div class="card-header">
         Your Favourite Team
@@ -10,7 +10,7 @@
                 <i class="fe fe-plus-square"></i>  Change
             </a>
         @endif
-        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Select the team that you support for the FIFA 2018 world cup!!"></i>
+        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Select the team that you support ♥️ for the FIFA 2018 world cup!!"></i>
     </div>
     <div class="card-body">
          @if($changeField!=='favourite team'  && $data)
