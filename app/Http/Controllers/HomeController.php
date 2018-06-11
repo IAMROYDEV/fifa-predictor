@@ -115,4 +115,17 @@ class HomeController extends Controller
             'results' => 1,
         ], 200);
     }
+    
+    public function faq(Request $request) {
+        return view('partial.faq');
+    }
+    public function rules(Request $request) {
+        return view('partial.rules');
+    }
+    public function privacyPolicy(Request $request) {
+        return view('partial.privacyPolicy');
+    }
+    public function termsService(Request $request) {
+        return view('partial.termsService');
+    }
 }
