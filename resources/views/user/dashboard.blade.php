@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container dashboard">
     <div class="row">
         <div class="col-md-6">
             <div class="col-md-12">
@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    @include('user.predictions.current-match')
+                    @include('user.predictions.current-match', ['currentMatch' => $currentMatch, 'currentMatchPrediction' => $currentMatchPrediction])
                 </div>
                 <div class="col-md-12">
                     @include('user.predictions.squad')

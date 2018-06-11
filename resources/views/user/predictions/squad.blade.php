@@ -21,9 +21,14 @@
                         <tr class="tr-{{$player->id}}">
 
                             <td>
-                                {{$player->name}} ({{$player->position}})
+                                
                                 @if($user->player_id == $player->id)
-                                    <span style="color: #0000ff;">(Captain)</span>
+                                    <b>
+                                        {{$player->name}} ({{$player->position}})
+                                        <span style="color: #0000ff;">(Captain)</span>
+                                    </b>
+                                @else
+                                    {{$player->name}} ({{$player->position}})
                                 @endif
                             </td>
                             <td>

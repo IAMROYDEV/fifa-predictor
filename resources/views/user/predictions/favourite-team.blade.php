@@ -39,7 +39,7 @@
            </div>
          </div>
          <div class="row">
-             <div class="col-md-4 offset-md-4">
+             <div class="col text-center">
                <button type="submit" class="btn btn-pill btn-secondary">
                    <i class="fe fe-check"></i> Mark as Favourite
                </button>

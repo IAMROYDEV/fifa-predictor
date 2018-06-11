@@ -18620,3 +18620,7 @@ svg {
   position:absolute;
   right:10px;
 }
+
+.dashboard .card-header .btn.button-right {
+    right: 30px;
+}
