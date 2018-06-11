@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Your Top Scorer Squad</h3>
+        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Write your content here!!"></i>
     </div>
     <div class="card-body">
         @if($user->is_team_locked)

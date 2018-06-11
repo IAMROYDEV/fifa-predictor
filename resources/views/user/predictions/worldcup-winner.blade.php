@@ -9,6 +9,7 @@
             <i class="fe fe-plus-square"></i>  Change
         </a>
         @endif
+        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Write your content here!!"></i>
     </div>
     <div class="card-body">
          @if($changeField!=='world cup winner' && $data)
