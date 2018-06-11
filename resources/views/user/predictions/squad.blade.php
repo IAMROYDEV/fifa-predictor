@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Your Top Scorer Squad</h3>
-        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Write your content here!!"></i>
+        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Create a squad of 11 players. who will score the most goals during the entire tournament. Each goal by the player in your squad will earn you 10 points and double the points for the selected captain. Make sure you lock the squad to start collecting points.!!"></i>
     </div>
     <div class="card-body">
         @if($user->is_team_locked)
