@@ -44,4 +44,16 @@ class UserDashboardController extends Controller
 
         return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user', 'currentMatch', 'currentMatchPrediction'));
     }
+    
+    public function setTimezone(Request $request) {
+        $user=auth()->user();
+        $timezone = $request->all();
+        $user->timezone = $timezone['timezone'];
+        $user->save();
+        return response()->json([
+            'status'  => 200,
+            'message' => 'timezone set successfully',
+            'results' => 1,
+        ], 200);
+    }
 }

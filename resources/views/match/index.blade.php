@@ -34,7 +34,11 @@
                         <div class="text-muted mb-4">
                           {{$match->matchStage->title}}
 						              @if($match->played_date):
-                          {{date('D, d/m h:i A', strtotime($match->played_date))}}
+                          <?php
+                            $dateP = new \DateTime($match->played_date);
+                            $dateP->setTimezone(new \DateTimeZone($user->timezone));
+                            echo $dateP->format('D, d/m h:i A');
+                           ?>
                           @endif
                           @if($match->locked)
                           <i class="fe fe-lock"></i>
@@ -43,7 +47,7 @@
                         </div>
                         <div class="col-3 col-sm-3 col-md-2 alert-link text-center">
                           @if($match->user_points !== null)
-                          {{$match->user_points}}<i class="fe fe-star"></i>
+                          {{$match->user_points}}⭐
                           @endif
                         </div>
                       </div>

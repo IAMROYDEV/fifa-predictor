@@ -34,3 +34,24 @@
     
 </div>
 @endsection
+@section('sub-scripts')
+<script>
+    window.onload = function () {
+        $.getJSON('https://timezoneapi.io/api/ip', function(data){
+            // Request OK?
+            if(data.meta.code == '200'){
+                var city = data.data.timezone.id;
+                $.ajax({
+                    type: "GET",
+                    url: "/users/set-timezone?timezone="+city,
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+        });
+    }
+
+
+</script>
+@endsection

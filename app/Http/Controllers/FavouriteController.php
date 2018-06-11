@@ -8,6 +8,15 @@ use App\GlobalSetting;
 
 class FavouriteController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function save()
     {
         $allowChange=GlobalSetting::whereRule('GLOBAL_PREDICTION_ALLOW_CHANGE')->first();
@@ -25,7 +34,7 @@ class FavouriteController extends Controller
         $prediction=UserGlobalPrediction::wherePredictor($predictor)->where(function ($query) use ($player_id,$team_id) {
             $query->where('player_id', $player_id)
                     ->orWhere('team_id', $team_id);
-        })->first();
+        })->where('user_id', $user->id)->first();
         if ($prediction) {
             $prediction->player_id=$player_id;
             $prediction->team_id=$team_id;

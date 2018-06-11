@@ -56,7 +56,13 @@ Route::post('/favourite', 'FavouriteController@save')->name('user.favourite');
 Route::get('/users/select-captain/{captain_id}', 'HomeController@selectCaptain');
 
 Route::get('/lock-squad', 'HomeController@lockSquad');
+Route::get('/privacy-policy', 'HomeController@privacyPolicy');
+Route::get('/terms-service', 'HomeController@termsService');
+Route::get('/faq', 'HomeController@faq');
+Route::get('/rules', 'HomeController@rules');
 
 Route::get('/users/add-players/{player_id}', 'HomeController@addPlayers');
 Route::get('match/prediction/{world_cup_id}', 'MatchController@index')->name('matchPredictions');
 Route::post('match/prediction/set', 'MatchController@setUserMatchPrediction');
+
+Route::get('/users/set-timezone', 'UserDashboardController@setTimezone');

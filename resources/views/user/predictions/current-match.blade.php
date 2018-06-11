@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-5">
-                <img src="/assets/images/flags/{{$currentMatch->teamA->code}}.svg" alt="" width="100%">
+                <img src="/assets/images/flags/{{$currentMatch->teamA->code}}.svg" alt="" width="100%" class="border border-light rounded">
                 <br/>
                 @if($currentMatchPrediction)
                 <h2 style="margin-top: 10px">{{$currentMatchPrediction->team1_score}}</h2>

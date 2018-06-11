@@ -68,6 +68,11 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            body {
+                background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url("/img/background.jpg");
+                background-size: cover;
+                background-position: center; 
+            }
         </style>
     </head>
     <body>
@@ -75,11 +80,7 @@
             <div class="top-left links">
                 <a class="" href="{{ route('user.dashboard') }}">
                 <img src="{{asset('img/logo.png')}}" width="10%" style="float: left">
-                    <span style="
-                        font-family: cursive;
-                        font-size: xx-large;
-                        font-weight: bold;
-                    ">fifa8teen</span>
+                    
                 </a>
             </div>
             @if (Route::has('login'))
@@ -94,10 +95,6 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    <img src="{{asset('img/football-ball.png')}}">
-                    
-                </div>
             </div>
         </div>
     </body>
