@@ -42,12 +42,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('user.dashboard') }}">
-                    <img src="{{asset('img/logo.png')}}" width="10%">
-                    <span style="
-                        font-family: cursive;
-                        font-size: xx-large;
-                        font-weight: bold;
-                    ">fifa8teen</span>
+                    <img src="{{asset('img/Fantasy-football-edge-logo-transparent.png')}}" height="80px" style="margin-left: 10px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -71,7 +66,6 @@
                                 <span class="avatar" style="background-image: url({{Auth::user()->avatar}})"></span>
                                 <span class="ml-2 d-none d-lg-block">
                                     <span class="text-default">{{ Auth::user()->name }}</span>
-                                    <small class="text-muted d-block mt-1">Administrator</small>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
