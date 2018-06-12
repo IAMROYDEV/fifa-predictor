@@ -50,31 +50,4 @@
     </div>
 </div>
 {{Form::close()}}
-<script>
-    window.onload=function(){
-        require(['jquery', 'selectize'], function ($, selectize) {
-            $(function(){
-                $('#team_id,#player_id').selectize({
-                    render: {
-                            option:function(data, escape) {
-                                    return (`
-                                    <div>
-                                        <span class="image"><img src="${data.image}" /></span>
-                                        <span class="title">${escape(data.text)}</span>
-                                    </div>`
-                                    );
-                            },
-                            item:function(data, escape) {
-                                    return (`
-                                <div>
-                                    <span class="image"><img src="${data.image}" /></span>
-                                    <span class="title">${escape(data.text)}</span>
-                                </div>
-                                `);
-                            }
-                        }
-                    });
-                })
-            });
-        }
-</script>
+
