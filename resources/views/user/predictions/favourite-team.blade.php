@@ -10,6 +10,7 @@
                 <i class="fe fe-plus-square"></i>  Change
             </a>
         @endif
+        <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Select the team that you support ❤️ for the FIFA 2018 world cup!!"></li>
     </div>
     <div class="card-body">
          @if($changeField!=='favourite team'  && $data)
