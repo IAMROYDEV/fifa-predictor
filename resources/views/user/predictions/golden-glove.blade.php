@@ -26,8 +26,8 @@
         <div class="row">
            <div class="form-group col-md-12">
                <select name="player_id" id="player_id" class="form-control" required>
-                   <option value="">Select Team</option>
-                    @foreach($players as $player)
+                   <option value="">Select Goalkeeper</option>
+                    @foreach($gks as $player)
                     {{-- {{ ($slectedCode == $player->code ? "selected":"") }} --}}
                         <option value="{{$player->id}}" 
                             {{ ($data && $data->player_id == $player->id ? "selected":"") }}

@@ -35,19 +35,21 @@ class UserDashboardController extends Controller
         $user=auth()->user();
         $teams=Team::orderBy('name', 'ASC')->get();
         $players=Player::orderBy('team_id')->orderBy('name', 'ASC')->get();
+        $gks=Player::orderBy('team_id')->orderBy('name', 'ASC')->where('position', 'LIKE', "%gk%")->get();
         $changeField=request('change');
         // \Session::flash('error', "Special message goes here");
         $currentMatch = $currentMatchPrediction = '';
-        $currentMatch = Match::where('played_date', '>=', \Illuminate\Support\Carbon::today()->toDateString())->orderBy('played_date','ASC')->first();
-        if($currentMatch) {
+        $currentMatch = Match::where('played_date', '>=', \Illuminate\Support\Carbon::today()->toDateString())->orderBy('played_date', 'ASC')->first();
+        if ($currentMatch) {
             $currentMatchPrediction = UserMatchPrediction::where('match_id', $currentMatch->id)
                                     ->where('user_id', $userID)->first();
         }
 
-        return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user', 'currentMatch', 'currentMatchPrediction'));
+        return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user', 'currentMatch', 'currentMatchPrediction', 'gks'));
     }
     
-    public function setTimezone(Request $request) {
+    public function setTimezone(Request $request)
+    {
         $user=auth()->user();
         $timezone = $request->all();
         $user->timezone = $timezone['timezone'];
