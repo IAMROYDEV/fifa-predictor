@@ -21,7 +21,7 @@ class MatchController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['listAllMatches']]);
+        $this->middleware('auth', ['except' => ['listAllMatches', 'leaderboard']]);
     }
     
     public function index(Request $request, $worldCupId)
@@ -179,5 +179,10 @@ class MatchController extends Controller
         }
         PlayerLog::whereMatchId($match_id)->wherePlayerId($player_id)->delete();
         return redirect()->back()->with('success', 'deleted goals scorer');
+    }
+
+    public function leaderboard()
+    {
+        return view('match.leaderboard');
     }
 }
