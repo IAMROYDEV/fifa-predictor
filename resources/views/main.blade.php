@@ -293,6 +293,9 @@
               margin: 0 auto 5px;
               background-color: rgba(225,225,225,1);  
             }
+            .navbar-inverse .navbar-nav>li>a.fb-link:hover {
+                background: none;
+            }
             @media (max-width: 767px) {
                 .navbar-inverse .navbar-toggle {
                    margin-top: 20px;
@@ -351,7 +354,7 @@
                             <a href="/privacy-policy">Privacy</a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/fifa8teen/" target="_blank" style="padding-top: 0px;"><img src="/img/facebook-icon-preview-200x200.png" height="60px"alt="facebook-page" title="Find us on Facebook"></a>
+                            <a href="https://www.facebook.com/fifa8teen/" target="_blank" style="padding-top: 0px;" class="fb-link"><img src="/img/facebook-icon-preview-200x200.png" height="60px"alt="facebook-page" title="Find us on Facebook"></a>
                         </li>
                     </ul>
                 </nav>
