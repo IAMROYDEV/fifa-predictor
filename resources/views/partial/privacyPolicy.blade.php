@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('main')
 
 @section('content')
 
 <div class="container">
-    <div class="card">
+    <div class="card" style="background: #fff;
+    opacity: 0.8;
+    padding: 10px;">
         <div class="card-header">
             <h3 class="card-title">Privacy Policy</h3>
         </div>
