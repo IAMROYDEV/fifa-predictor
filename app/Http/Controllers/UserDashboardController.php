@@ -37,10 +37,12 @@ class UserDashboardController extends Controller
         $players=Player::orderBy('team_id')->orderBy('name', 'ASC')->get();
         $changeField=request('change');
         // \Session::flash('error', "Special message goes here");
-        
+        $currentMatch = $currentMatchPrediction = '';
         $currentMatch = Match::where('played_date', '>=', \Illuminate\Support\Carbon::today()->toDateString())->orderBy('played_date','ASC')->first();
-        $currentMatchPrediction = UserMatchPrediction::where('match_id', $currentMatch->id)
+        if($currentMatch) {
+            $currentMatchPrediction = UserMatchPrediction::where('match_id', $currentMatch->id)
                                     ->where('user_id', $userID)->first();
+        }
 
         return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user', 'currentMatch', 'currentMatchPrediction'));
     }
