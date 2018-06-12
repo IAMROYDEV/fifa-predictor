@@ -5,6 +5,7 @@ namespace App\Services;
 use App\SocialFacebookAccount;
 use App\User;
 use Laravel\Socialite\Contracts\User as ProviderUser;
+use App\Service\SlackService;
 
 class SocialFacebookAccountService
 {
@@ -31,11 +32,11 @@ class SocialFacebookAccountService
                     'password' => md5(rand(1, 10000)),
                     'avatar' => $providerUser->getAvatar()
                 ]);
+                SlackService::sendMessage("new user registered \nname *{$user->name}*\nemail{$user->email}");
             }
 
             $account->user()->associate($user);
             $account->save();
-            SlackService::sendMessage("new user registered \nname *{$user->name}*\nemail{$user->email}");
             return $user;
         }
     }
