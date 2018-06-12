@@ -4,15 +4,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120655950-1"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-120655950-1');
-        </script>
 
         <title>fifa8teen</title>
 
@@ -77,96 +68,31 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-            
-            /* Shared */
-            .loginBtn a {
-                text-decoration: none;
-                color: #fff;
-            }
-            .loginBtn
-            {
-              box-sizing: border-box;
-              position: relative;
-              /* width: 13em;  - apply for fixed size */
-              margin: 0.2em;
-              padding: 0 15px 0 46px;
-              border: none;
-              text-align: left;
-              line-height: 34px;
-              white-space: nowrap;
-              border-radius: 0.2em;
-              font-size: 16px;
-              color: #FFF;
-            }
-            .loginBtn:before {
-              content: "";
-              box-sizing: border-box;
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 34px;
-              height: 100%;
-            }
-            .loginBtn:focus {
-              outline: none;
-            }
-            .loginBtn:active {
-              box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
-            }
-
-
-            /* Facebook */
-            .loginBtn--facebook {
-              background-color: #4C69BA;
-              background-image: linear-gradient(#4C69BA, #3B55A0);
-              /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
-              text-shadow: 0 -1px 0 #354C8C;
-            }
-            .loginBtn--facebook:before {
-              border-right: #364e92 1px solid;
-              background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
-            }
-            .loginBtn--facebook:hover,
-            .loginBtn--facebook:focus {
-              background-color: #5B7BD5;
-              background-image: linear-gradient(#5B7BD5, #4864B1);
-            }
-
-
-           
             body {
                 background: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url("/img/background.jpg");
                 background-size: cover;
                 background-position: center; 
             }
+            .navbar {
+                width: 100%;
+                height: 80px;
+                border-bottom: 2px solid #fff; 
+                background: #000;
+                opacity: 0.6;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            <div class="top-left links">
-                <a class="" href="{{ route('user.dashboard') }}">
-                <img src="{{asset('img/logo.png')}}" width="10%" style="float: left">
-                    
-                </a>
+        <div class="row full-height">
+            <nav class="navbar">
+            <div class="container">
             </div>
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/dashboard') }}">Home</a>
-                    @endauth
-                    <a href="{{ url('/rules') }}">Rules</a>
-                    <a href="{{ url('/faq') }}">FAQ</a>
-                </div>
-            @endif
-
+        </nav>
             <div class="content">
-                @auth
-                
-                @else
-                  <button class="loginBtn loginBtn--facebook">
-                      <a href="{{url('/redirect')}}" >Login with Facebook</a>
-                  </button>
-                @endauth
+                <div class="text-center">
+                    <h2>BUILD YOUR TOP SCORING SQUAD & PREDICT MATCH SCORES TO WIN</h4>
+                    <h4>NOT A MEMBER AS YET?</h5> 
+                </div>
             </div>
         </div>
     </body>
