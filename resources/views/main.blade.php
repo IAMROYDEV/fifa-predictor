@@ -346,6 +346,7 @@
                         <li class="">
                             <a href="/privacy-policy">Privacy</a>
                         </li>
+                        <a href="https://www.facebook.com/fifa8teen/" target="_blank"><img src="/img/facebook-icon-preview-200x200.png" height="60px"alt="facebook-page" title="Find us on Facebook"></a>
                     </ul>
                 </nav>
             </div>
