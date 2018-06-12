@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="theme-color" content="#88b02c" />
+        <meta name="Description" content="Create top scoring squad and predict the match score during the 2018 FIFA world cup and earn points. Stand a chance to win exciting prizes at the end of the tournament.">
+<meta name="Keywords" content="fifa8teen fifaworldcup fifa worldcup matchpredictor football messi ronaldo earnpoints 2018 FIFA World Cup Russia">
         <title>fifa8teen</title>
 
         <!-- Fonts -->
