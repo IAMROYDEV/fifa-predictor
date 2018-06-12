@@ -16,7 +16,8 @@
         </div>
         <div class="row">
             <div class="col-5">
-                <img src="/assets/images/flags/{{$currentMatch->teamA->code}}.svg" alt="" width="100%" class="border border-light rounded">
+                <div>{{$currentMatch->teamA->name}}</div>
+                <img src="/assets/images/flags/{{$currentMatch->teamA->code}}.svg" alt="" height="40px" class="border border-light rounded">
                 <br/>
                 @if($currentMatchPrediction)
                 <h2 style="margin-top: 10px">{{$currentMatchPrediction->team1_score}}</h2>
@@ -27,7 +28,8 @@
                 <b style="font-size: 20px">vs</b>
             </div>
             <div class="col-5">
-                <img src="/assets/images/flags/{{$currentMatch->teamB->code}}.svg" alt="" width="100%" class="border border-light rounded">
+                <div>{{$currentMatch->teamB->name}}</div>
+                <img src="/assets/images/flags/{{$currentMatch->teamB->code}}.svg" alt="" height="40" class="border border-light rounded">
                 <br/>
                 @if($currentMatchPrediction)
                 <h2 style="margin-top: 10px">{{$currentMatchPrediction->team2_score}}</h2>
