@@ -60,9 +60,9 @@ class MatchController extends Controller
         $teams = Team::get();
         $slectedTeamid = isset($param['team_id']) ? $param['team_id'] : '';
         
-        $query = Match::orderBy('played_date', 'DESC');
+        $query = Match::orderBy('played_date', 'ASC');
         
-        if($slectedTeamid) {
+        if ($slectedTeamid) {
             $query->orWhere(['team1' => $slectedTeamid, 'team2' => $slectedTeamid]);
         }
         
