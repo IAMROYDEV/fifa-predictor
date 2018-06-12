@@ -14,13 +14,14 @@
     <div class="card-body">
          @if($changeField!=='golden ball' && $data)
              <div class="row">
-                 <div class="col-sm-2 text-center">
-                 <img src="/assets/images/flags/{{$data->player->team->code}}.svg" alt=""
-                 title="{{$data->player->team->name}}">
-                </div>
-                <div class="col-sm-8 text-center">
+                <div class="col-sm-12 text-center">
                     <h1>{{$data->player->name}}</h1>
                 </div>
+                 <div class="col-sm-12 text-center">
+                 <img src="/assets/images/flags/{{$data->player->team->code}}.svg" alt=""
+                 title="{{$data->player->team->name}}" height="120">
+                </div>
+                
              </div>
          @else
         <div class="row">

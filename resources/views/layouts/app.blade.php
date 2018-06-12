@@ -154,7 +154,6 @@
                 <div class="col-auto">
                   <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item"><a href="/rules">Rules</a></li>
-                    <li class="list-inline-item"><a href="/faq">FAQ</a></li>
                     <li class="list-inline-item"><a href="/privacy-policy">Privacy Policy</a></li>
                     <li class="list-inline-item"><a href="/terms-service">Terms of Service</a></li>
                   </ul>
