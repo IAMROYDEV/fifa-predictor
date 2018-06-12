@@ -233,6 +233,64 @@
             .navbar-header {
                 height: 80px;
             }
+            .card {
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                position: relative;
+                margin-bottom: 1.5rem;
+                width: 100%;
+            }
+
+            .card {
+                position: relative;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                min-width: 0;
+                word-wrap: break-word;
+                background-color: #fff;
+                background-clip: border-box;
+                border: 1px solid rgba(0, 40, 100, 0.12);
+                border-radius: 3px;
+            }
+            .card-header:first-child {
+                border-radius: calc(3px - 1px) calc(3px - 1px) 0 0;
+            }
+
+            .card-header:first-child {
+                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+            }
+            .card-header {
+                background: none;
+                padding: 0.5rem 1.5rem;
+                display: -ms-flexbox;
+                display: flex;
+                min-height: 3.5rem;
+                -ms-flex-align: center;
+                align-items: center;
+            }
+            .card-header {
+                padding: 1.5rem 1.5rem;
+                margin-bottom: 0;
+                background-color: rgba(0, 0, 0, 0.03);
+                border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+            }
+            
+            .circle {
+              width: 20px;
+              height: 20px;
+              line-height: 20px;
+/*              border-radius: 50%;  the magic 
+              -moz-border-radius: 50%;
+              -webkit-border-radius: 50%;*/
+              text-align: center;
+              color: #080808e3;
+              font-size: 14px;
+              text-transform: uppercase;
+              font-weight: 700;
+              margin: 0 auto 5px;
+              background-color: rgba(225,225,225,1);  
+            }
             @media (max-width: 767px) {
                 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
                     border-color: #101010;
@@ -275,7 +333,7 @@
                             <a href="#">Leaderboard</a>
                         </li>
                         <li>
-                            <a href="#">Match</a>
+                            <a href="/matches">Match</a>
                         </li>
                         <li class="">
                             <a href="/rules">Rules</a>
@@ -297,4 +355,15 @@
             </div>
         </div>
     </body>
+    <script>
+        $(document).ready(function(){
+            
+            $.getJSON('https://timezoneapi.io/api/ip', function(data){
+                if(data.meta.code == '200'){
+                    var city = data.data.timezone.id;
+                    document.cookie = "timezone="+city;
+                }
+            });
+        });
+    </script>
 </html>

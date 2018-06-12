@@ -66,3 +66,5 @@ Route::get('match/prediction/{world_cup_id}', 'MatchController@index')->name('ma
 Route::post('match/prediction/set', 'MatchController@setUserMatchPrediction');
 
 Route::get('/users/set-timezone', 'UserDashboardController@setTimezone');
+
+Route::get('/matches', 'MatchController@listAllMatches');

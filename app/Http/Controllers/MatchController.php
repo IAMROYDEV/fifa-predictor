@@ -21,7 +21,7 @@ class MatchController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['listAllMatches']]);
     }
     
     public function index(Request $request, $worldCupId)
@@ -53,7 +53,22 @@ class MatchController extends Controller
         return view('match.index', ['matches' => $matches, 'stages' => $stages, 'selectStage' => $stageSelected, 'user' => $user]);
     }
     
-    
+    public function listAllMatches(Request $request)
+    {
+        $param = $request->all();
+        
+        $teams = Team::get();
+        $slectedTeamid = isset($param['team_id']) ? $param['team_id'] : '';
+        
+        $query = Match::orderBy('played_date', 'DESC');
+        
+        if($slectedTeamid) {
+            $query->orWhere(['team1' => $slectedTeamid, 'team2' => $slectedTeamid]);
+        }
+        
+        $matches = $query->get();
+        return view('match.listAll', ['matches' => $matches, 'teams' => $teams, 'slectedTeamid' => $slectedTeamid]);
+    }
     public function listMatches(Request $request)
     {
         $teams = Team::get();

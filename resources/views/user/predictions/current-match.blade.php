@@ -27,7 +27,7 @@
                 <b style="font-size: 20px">vs</b>
             </div>
             <div class="col-5">
-                <img src="/assets/images/flags/{{$currentMatch->teamB->code}}.svg" alt="" width="100%">
+                <img src="/assets/images/flags/{{$currentMatch->teamB->code}}.svg" alt="" width="100%" class="border border-light rounded">
                 <br/>
                 @if($currentMatchPrediction)
                 <h2 style="margin-top: 10px">{{$currentMatchPrediction->team2_score}}</h2>
