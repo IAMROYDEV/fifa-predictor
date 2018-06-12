@@ -17,7 +17,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #2e2f30;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -243,7 +243,7 @@
                    padding: 0 15px; 
                 }
                 .heading h2 {
-                    font-size: 26px;
+                    font-size: 22px;
                 }
             }
         </style>
@@ -278,6 +278,9 @@
                         </li>
                         <li class="">
                             <a href="/rules">Rules</a>
+                        </li>
+                        <li class="">
+                            <a href="/privacy-policy">Privacy</a>
                         </li>
                     </ul>
                 </nav>
