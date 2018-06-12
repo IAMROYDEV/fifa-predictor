@@ -135,12 +135,24 @@
             @endif
         </div>
     </div>
-    <div class="alert alert-icon alert-success" role="alert" style="position: fixed;bottom: 20px;display: none;" id="added-player">
-        Added player.
-      </div>
-      <div class="alert alert-icon alert-danger" role="alert" style="position: fixed;bottom: 20px;display: none;" id="removed-player">
-        Removed player.
-      </div>
+    <div class="alert alert-icon alert-success style-center" role="alert" style="" id="added-player">
+        <i class="fe fe-check-circle"></i>Added player.
+    </div>
+    <div class="alert alert-icon alert-danger style-center" role="alert" style="" id="removed-player">
+    <i class="fe fe-trash"></i>Removed player
+    </div>
+    <style>
+        .style-center{
+                position: fixed;top: 20px;left:42%;z-index:100;display:none;
+            }
+        @media only screen and (max-width: 600px) {
+           .style-center{
+                position: fixed;top: 20px;left:25%;z-index:100;display:none;
+            }
+        }
+        
+
+    </style>
 </div>
 
 
