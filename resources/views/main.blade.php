@@ -335,7 +335,7 @@
                             
                         </li>
                         <li>
-                            <a href="#">Leaderboard</a>
+                            <a href="/leaderboard">Leaderboard</a>
                         </li>
                         <li>
                             <a href="/matches">Match</a>
