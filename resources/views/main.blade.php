@@ -292,6 +292,9 @@
               background-color: rgba(225,225,225,1);  
             }
             @media (max-width: 767px) {
+                .navbar-inverse .navbar-toggle {
+                   margin-top: 20px;
+               }
                 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
                     border-color: #101010;
                     background: #000;
@@ -345,7 +348,7 @@
                 </nav>
             </div>
         </header>
-        <div class="row full-height">
+        <div class="full-height">
             <nav class="navbar">
                 <div class="container">
                 </div>
