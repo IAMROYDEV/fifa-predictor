@@ -66,11 +66,11 @@
                                 <tr class="tr-{{$player->id}}">
 
                                     <td>
-                                        <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> {{$player->name}} ({{$player->position}})
+                                        <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> {{str_replace("(captain)", '', $player->name)}} ({{$player->position}})
                                     </td>
                                     <td>
                                         @if(isPlayerAdded($player->id))
-                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i> Remove</button>
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i></button>
                                         @else
                                             <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-success btn-block add-squad"><i class="fe fe-plus "></i>Add</button>
                                         @endif
@@ -100,7 +100,7 @@
                                 <th>Name</th>
                                 <th>Captain</th>
                                 @if(!$user->is_team_locked)
-                                <th></th>
+                                <th class=""></th>
                                 @endif
                             </tr>
                         </thead>
@@ -110,7 +110,7 @@
                                 <tr class="tr-{{$player->id}}">
 
                                     <td>
-                                        <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> {{$player->name}} ({{$player->position}})
+                                        <img src="/assets/images/flags/{{$player->team->code}}.svg" title="{{$player->team->name}}" alt="{{$player->team->name}}" height="15px" /> {{str_replace("(captain)", '', $player->name)}} ({{$player->position}})
                                     </td>
                                     <td>
                                         <label class="custom-control custom-radio custom-control-inline">
@@ -119,8 +119,8 @@
                                         </label>
                                     </td>
                                     @if(!$user->is_team_locked)
-                                        <td>
-                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i> Remove</button>
+                                    <td class="">
+                                            <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i> </button>
                                         </td>
                                     @endif
                                 </tr>
@@ -285,9 +285,11 @@
                         success: function(data) {
                             NProgress.done();
                             if(data.results == 0) {
+                                alert('Removed player from squad');
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
                             } else {
+                                alert('Player added to squad');
                                 $('.add-ply-tbody .tr-'+playerId+' button').addClass('remove-squad');
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-trash mr-2"></i> Remove');
                                 $('.remove-ply-tbody').append(data);

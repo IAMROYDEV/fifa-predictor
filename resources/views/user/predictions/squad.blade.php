@@ -11,7 +11,7 @@
                         <th>Name</th>
                         <th>Team</th>
                         @if(!$user->is_team_locked)
-                        <th></th>
+                        <th class=""></th>
                         @endif
                     </tr>
                 </thead>
@@ -24,11 +24,11 @@
                                 
                                 @if($user->player_id == $player->id)
                                     <b>
-                                        {{$player->name}} ({{$player->position}})
+                                        {{str_replace("(captain)", '', $player->name)}} ({{$player->position}})
                                         <span style="color: #0000ff;">(Captain)</span>
                                     </b>
                                 @else
-                                    {{$player->name}} ({{$player->position}})
+                                    {{str_replace("(captain)", '', $player->name)}} ({{$player->position}})
                                 @endif
                             </td>
                             <td>
@@ -36,8 +36,8 @@
                                 
                             </td>
                             @if(!$user->is_team_locked)
-                                <td>
-                                    <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i> Remove</button>
+                            <td class="">
+                                    <button data-player="{{$player->id}}" type="button" class="btn btn-icon btn-danger btn-block add-squad remove-squad"><i class="fe fe-trash "></i></button>
                                 </td>
                             @endif
                         </tr>
