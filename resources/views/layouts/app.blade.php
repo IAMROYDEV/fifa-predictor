@@ -45,48 +45,22 @@
                 <a class="navbar-brand" href="{{ route('user.dashboard') }}">
                     <img src="{{asset('img/Fantasy-football-edge-logo-transparent.png')}}" height="80px" style="margin-left: 10px;">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            
-                        @else
-                            
-                        <div class="dropdown">
-                            <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                                <span class="avatar" style="background-image: url({{Auth::user()->avatar}})"></span>
-                                <span class="ml-2 d-none d-lg-block">
-                                    <span class="text-default">{{ Auth::user()->name }}</span>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                <a class="dropdown-item" href="/faq">
-                                    <i class="dropdown-icon fe fe-help-circle"></i> Need help?
-                                </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    <i class="dropdown-icon fe fe-log-out"></i> Sign out
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
-                        
-                        @endguest
-                    </ul>
+                @auth
+                <div class="">
+                    <span class="avatar" style="background-image: url({{Auth::user()->avatar}})"></span>
+                    <span class="ml-2">
+                        <span class="text-default">{{ Auth::user()->name }}</span>
+                    </span>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                        <i class="dropdown-icon fe fe-log-out"></i> Sign out
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
+                @endauth
             </div>
         </nav>
 
