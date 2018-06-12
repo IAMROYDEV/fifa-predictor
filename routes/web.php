@@ -68,3 +68,4 @@ Route::post('match/prediction/set', 'MatchController@setUserMatchPrediction');
 Route::get('/users/set-timezone', 'UserDashboardController@setTimezone');
 
 Route::get('/matches', 'MatchController@listAllMatches');
+Route::get('/leaderboard', 'MatchController@leaderboard');
