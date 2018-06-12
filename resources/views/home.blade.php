@@ -213,6 +213,7 @@
                         alert('Maximum 11 players allowed!');
                         return;
                     }
+                    NProgress.start();
                     selectplayer(playerId);
                 });
 
@@ -224,15 +225,18 @@
                         alert('Maximum 11 players allowed!');
                         return;
                     }
+                    NProgress.start();
                     selectplayer(playerId);
                 });
                 
                 jQuery(document).on('click', 'input[name=your-captain]', function() {
                     var captainId = jQuery(this).val();
+                    NProgress.start();
                     $.ajax({
                         type: "GET",
                         url: "/users/select-captain/"+captainId,
                         success: function(data) {
+                            NProgress.done();
                             if(!(data) || (data && data.results != 1)) {
                                 alert('Something went wrong on server side!');
                             }
@@ -253,10 +257,12 @@
                     }
                     var r = confirm("Are you sure you want to lock your squad?\nChanges can't be reverted back!!");
                     if(r) {
+                        NProgress.start();
                         $.ajax({
                             type: "GET",
                             url: "/lock-squad",
                             success: function(data) {
+                                NProgress.done();
                                 if(!(data) || (data && data.results != 1)) {
                                     alert('Something went wrong on server side!');
                                     return;
@@ -277,6 +283,7 @@
                         type: "GET",
                         url: "/users/add-players/"+playerId,
                         success: function(data) {
+                            NProgress.done();
                             if(data.results == 0) {
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');

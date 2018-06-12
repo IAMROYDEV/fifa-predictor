@@ -9,6 +9,7 @@
 <meta name="Keywords" content="fifa8teen fifaworldcup fifa worldcup matchpredictor football messi ronaldo earnpoints 2018 FIFA World Cup Russia">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120655950-1"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -33,6 +34,7 @@
     
     
     <!-- Fonts -->
+    <link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="{{asset('img/Fantasy-football-edge-logo-transparent.png')}}" type="image/gif" sizes="16x16">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
