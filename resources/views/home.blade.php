@@ -135,7 +135,12 @@
             @endif
         </div>
     </div>
-    
+    <div class="alert alert-icon alert-success" role="alert" style="position: fixed;bottom: 20px;display: none;" id="added-player">
+        Added player.
+      </div>
+      <div class="alert alert-icon alert-danger" role="alert" style="position: fixed;bottom: 20px;display: none;" id="removed-player">
+        Removed player.
+      </div>
 </div>
 
 
@@ -285,11 +290,11 @@
                         success: function(data) {
                             NProgress.done();
                             if(data.results == 0) {
-                                alert('Removed player from squad');
+                                $('#removed-player').fadeIn().delay(2000).fadeOut('slow');
                                 $('.remove-ply-tbody .tr-'+playerId).remove();
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-plus mr-2"></i>Add');
                             } else {
-                                alert('Player added to squad');
+                                $('#added-player').fadeIn().delay(2000).fadeOut('slow');
                                 $('.add-ply-tbody .tr-'+playerId+' button').addClass('remove-squad');
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-trash mr-2"></i> Remove');
                                 $('.remove-ply-tbody').append(data);
