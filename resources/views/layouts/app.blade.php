@@ -71,7 +71,6 @@
                                 <span class="avatar" style="background-image: url({{Auth::user()->avatar}})"></span>
                                 <span class="ml-2 d-none d-lg-block">
                                     <span class="text-default">{{ Auth::user()->name }}</span>
-                                    <small class="text-muted d-block mt-1">Administrator</small>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
