@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\worldCup;
+use App\WorldCup;
 use App\Team;
 use App\Player;
 use App\User;

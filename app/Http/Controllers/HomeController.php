@@ -29,26 +29,22 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $params = $request->all();
-        
-        if ($user->is_admin === 1) {
-            return redirect()->route('admin');
-        } else {
-            $teams = Team::get();
-            $slectedCode = $players = '';
-            if(isset($params['team'])) { 
-                $team = Team::where('code', $params['team'])->first();
-                if(!empty($team)) {
-                    $slectedCode = $team->code;
-                    $players  = Player::where('team_id', $team->id)->get();
-                } else {
-                    $players = Player::orderBy('goals', 'DESC')->get();
-                }
+        $teams = Team::get();
+        $slectedCode = $players = '';
+        if(isset($params['team'])) { 
+            $team = Team::where('code', $params['team'])->first();
+            if(!empty($team)) {
+                $slectedCode = $team->code;
+                $players  = Player::where('team_id', $team->id)->get();
             } else {
                 $players = Player::orderBy('goals', 'DESC')->get();
             }
-            
-            return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'user' => Auth::user()]);
+        } else {
+            $players = Player::orderBy('goals', 'DESC')->get();
         }
+        
+        return view('home', ['teams' => $teams, 'players' => $players, 'slectedCode' => $slectedCode, 'user' => Auth::user()]);
+        
     }
     
     
