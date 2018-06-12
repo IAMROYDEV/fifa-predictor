@@ -61,7 +61,7 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
+                padding: 0 20px;
                 font-size: 12px;
                 font-weight: 600;
                 letter-spacing: .1rem;
@@ -80,34 +80,37 @@
             .navbar {
                 width: 100%;
                 height: 80px;
-                border-bottom: 2px solid #fff; 
-                background: #000;
-                opacity: 0.6;
+                 
+                
+                
             }
             .root-btn {
                 display: inline-block;
-                padding: 0 50px;
+                padding: 0 30px;
                 color: #fff;
                 text-decoration: none;
-                border-radius: 50px;
+                border-radius: 30px;
                 box-sizing: border-box;
                 border: 2px;
                 border-style: solid;
-                background-color: #1db954;
-                border-color: #1db954;
+                background-color: #88b02c;
+                border-color: #88b02c;
                 -webkit-transition: all 0.3s ease;
                 -moz-transition: all 0.3s ease;
                 -ms-transition: all 0.3s ease;
                 -o-transition: all 0.3s ease;
                 transition: all 0.3s ease;
                 height: 80px;
-                font-size: 32px;
+                font-size: 24px;
                 line-height: 76px;
             }
 
             .green-btn.big-btn:hover {
                 background-color: transparent;
-                border-color: #1db954;
+                border-color: #88b02c;
+                text-transform: none;
+                text-decoration: none;
+                color: #fff;
             }
             .heading {
                 color: #fff;
@@ -126,13 +129,14 @@
             }
 
             .navbar-inverse {
-              background-color: #003300
+              
             }
 
             .navbar-inverse .navbar-nav>.active>a:hover,
             .navbar-inverse .navbar-nav>li>a:hover,
             .navbar-inverse .navbar-nav>li>a:focus {
-              background-color: #002200
+              background-color: #88b02c;
+              border-radius: 30px;
             }
 
             .navbar-inverse .navbar-nav>.active>a,
@@ -142,7 +146,7 @@
             .navbar-inverse .navbar-nav>.open>a,
             .navbar-inverse .navbar-nav>.open>a:hover,
             .navbar-inverse .navbar-nav>.open>a:focus {
-              background-color: #003300
+              
             }
 
             .dropdown-menu {
@@ -164,11 +168,13 @@
             }
 
             .navbar-inverse {
-              border-color: #003300
+              background: none;
+              border: none;
             }
 
             .navbar-inverse .navbar-brand {
-              color: #FFFFFF
+              color: #FFFFFF;
+              padding: 0;
             }
 
             .navbar-inverse .navbar-brand:hover {
@@ -181,7 +187,7 @@
 
             .navbar-inverse .navbar-nav>li>a:hover,
             .navbar-inverse .navbar-nav>li>a:focus {
-              color: #FFCC00
+              color: #FFF
             }
 
             .navbar-inverse .navbar-nav>.active>a,
@@ -220,6 +226,26 @@
             .navbar-inverse .navbar-nav>.dropdown>a:hover .caret {
               border-bottom-color: #FFFFFF
             }
+            .navbar-right {
+                margin-top: 20px;
+            }
+            .navbar-header {
+                height: 80px;
+            }
+            @media (max-width: 767px) {
+                .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+                    border-color: #101010;
+                    background: #000;
+                    opacity: 0.8;
+                }
+                .root-btn {
+                   font-size: 20px;
+                   padding: 0 15px; 
+                }
+                .heading h2 {
+                    font-size: 26px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -232,29 +258,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="./" class="navbar-brand">Bootstrap Menu</a>
+                    <a href="/" class="navbar-brand"><img src="/img/Fantasy-football-edge-logo-transparent.png" alt="logo" style="height: 80px;"></a>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#">Home</a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Mission</a></li>
-                                <li><a href="#">Vision</a></li>
-                                <li><a href="#">Careers</a></li>
-                            </ul>
+                        <li>
+                            <a href="#">Leaderboard</a>
                         </li>
                         <li>
-                            <a href="#">Products</a>
+                            <a href="#">Match</a>
                         </li>
-                        <li>
-                            <a href="#">Services</a>
-                        </li>
-                        <li class="active">
-                            <a href="#">Contact</a>
+                        <li class="">
+                            <a href="#">Rules</a>
                         </li>
                     </ul>
                 </nav>
@@ -270,7 +288,7 @@
                     <h2>BUILD YOUR TOP SCORING SQUAD & PREDICT MATCH SCORES TO WIN</h4>
                         <h4>NOT A MEMBER AS YET?</h5>
                             <br><br>
-                            <a href="/redirect" class="root-btn green-btn big-btn">JOIN NOW</a>
+                            <a href="/redirect" class="root-btn green-btn big-btn">LOGIN WITH FACEBOOK</a>
                 </div>
             </div>
         </div>
