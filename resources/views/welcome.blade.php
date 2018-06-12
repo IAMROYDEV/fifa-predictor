@@ -80,6 +80,34 @@
                 background: #000;
                 opacity: 0.6;
             }
+            .root-btn {
+                display: inline-block;
+                padding: 0 50px;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 50px;
+                box-sizing: border-box;
+                border: 2px;
+                border-style: solid;
+                background-color: #1db954;
+                border-color: #1db954;
+              -webkit-transition: all 0.3s ease;
+                -moz-transition: all 0.3s ease;
+                -ms-transition: all 0.3s ease;
+                -o-transition: all 0.3s ease;
+                transition: all 0.3s ease;
+                  height: 80px;
+                font-size: 32px;
+                line-height: 76px;
+            }
+
+            .green-btn.big-btn:hover {
+                background-color: transparent;
+                border-color: #1db954;
+            }
+            .heading {
+                color: #fff;
+            }
         </style>
     </head>
     <body>
@@ -89,9 +117,11 @@
             </div>
         </nav>
             <div class="content">
-                <div class="text-center">
+                <div class="text-center heading">
                     <h2>BUILD YOUR TOP SCORING SQUAD & PREDICT MATCH SCORES TO WIN</h4>
-                    <h4>NOT A MEMBER AS YET?</h5> 
+                    <h4>NOT A MEMBER AS YET?</h5>
+                    <br><br>
+                    <a href="/redirect" class="root-btn green-btn big-btn">JOIN NOW</a>
                 </div>
             </div>
         </div>
