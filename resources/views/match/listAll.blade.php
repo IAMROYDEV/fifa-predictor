@@ -39,7 +39,7 @@
                         @endif
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                        <div>{{$match->teamA->name}}</div>
+                        <div style="color: black; font-weight: 600;">{{$match->teamA->name}}</div>
                         <img src="/assets/images/flags/{{$match->teamA->code}}.svg" alt="" height="40" class="border border-light rounded">
                         <br/>
                         <div class="circle" style="margin-top: 10px">{{$match->team1_score !== null ? $match->team1_score : "-"}}</div>
@@ -49,7 +49,7 @@
                         <b style="font-size: 20px">vs</b>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                        <div>{{$match->teamB->name}}</div>
+                        <div style="color: black; font-weight: 600;">{{$match->teamB->name}}</div>
                         <img src="/assets/images/flags/{{$match->teamB->code}}.svg" alt="" height="40" class="border border-light rounded">
                         <br/>
                         <div class="circle" style="margin-top: 10px">{{$match->team2_score !== null ? $match->team2_score : "-"}}</div>
