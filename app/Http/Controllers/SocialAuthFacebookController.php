@@ -26,15 +26,20 @@ class SocialAuthFacebookController extends Controller
      */
     public function callback(SocialFacebookAccountService $service, Request $request)
     {
-        if (!$request->has('code') || $request->has('denied')) {
+        try {
+            if (!$request->has('code') || $request->has('denied')) {
+                return redirect('/');
+            }
+            $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+            auth()->login($user);
+            if ($user->is_admin) {
+                return redirect()->route('admin');
+            } else {
+                return redirect()->route('user.dashboard');
+            }
+        } catch (\Exception $e) {
+            \Log::info('Error while login ' . $e->getMessage());
             return redirect('/');
-        }
-        $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
-        auth()->login($user);
-        if ($user->is_admin) {
-            return redirect()->route('admin');
-        } else {
-            return redirect()->route('user.dashboard');
         }
     }
 }
