@@ -58,7 +58,7 @@
             "@php artisan package:discover"
         ],
         "deploy:production": [
-            "ssh -t workspex@fifa8teen.com 'cd /home/workspex/fifa && git reset --hard && git pull origin master && composer install && php artisan migrate'"
+            "ssh -t workspex@fifa8teen.com 'cd /home/workspex/fifa && git reset --hard && git pull origin master && composer install && php artisan migrate --force'"
         ]
     },
     "config": {
