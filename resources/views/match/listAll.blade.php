@@ -30,12 +30,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-bottom: 30px;">
                     <div class="text-muted mb-4" style="margin-bottom: 10px; color: #080808cf; font-weight: bold">
                         {{$match->matchStage->title}}
-                            @if($match->played_date):
-                        <?php
-                          $dateP = new \DateTime($match->played_date);
-                          $dateP->setTimezone(new \DateTimeZone($_COOKIE['timezone']));
-                          echo $dateP->format('D, d/m h:i A');
-                         ?>
+                        @if($match->played_date):
+                        {{$match->played_date->addMinutes($_COOKIE['timezone'])->format('D, d/m h:i A')}}
                         @endif
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
@@ -66,5 +62,9 @@ $( "#team_id" ).change(function() {
     $("#filter-match").submit();
 });
 </script>
+@endsection
+@section('metadata')
+<title>Match - fifa8teen</title>
+<meta property="og:image" content="{{asset('img/Fantasy-football-edge-logo-transparent.png')}}"/>
 @endsection
 

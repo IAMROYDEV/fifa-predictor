@@ -37,7 +37,7 @@ class SocialFacebookAccountService
                     'password' => md5(rand(1, 10000)),
                     'avatar' => $providerUser->getAvatar()
                 ]);
-                SlackService::sendMessage("new user registered \nname *{$user->name}*\nemail {$user->email}");
+                SlackService::sendMessage("new user registered \nname *{$user->name}*\nemail {$user->email}\nID {$user->id}");
                 if ($user->id % 50 ===0) {
                     $number=$user->id %50;
                     SlackService::sendMessage(":tada: :confetti_ball::confetti_ball: \nwe have {$number} users now\n:tada: :confetti_ball::confetti_ball:");

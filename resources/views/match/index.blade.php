@@ -34,11 +34,7 @@
                         <div class="text-muted mb-4">
                           {{$match->matchStage->title}}
 						              @if($match->played_date):
-                          <?php
-                            $dateP = new \DateTime($match->played_date);
-                            $dateP->setTimezone(new \DateTimeZone($user->timezone));
-                            echo $dateP->format('D, d/m h:i A');
-                           ?>
+                            {{$match->played_date->addMinutes($user->timezone_offset)->format('D, d/m h:i A')}}
                           @endif
                           @if($match->locked)
                           <i class="fe fe-lock"></i>
