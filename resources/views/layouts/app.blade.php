@@ -6,17 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#88b02c" />
     <meta name="Description" content="Create top scoring squad and predict the match score during the 2018 FIFA world cup and earn points. Stand a chance to win exciting prizes at the end of the tournament.">
-<meta name="Keywords" content="fifa8teen fifaworldcup fifa worldcup matchpredictor football messi ronaldo earnpoints 2018 FIFA World Cup Russia">
+    <meta name="Keywords" content="fifa8teen fifaworldcup fifa worldcup matchpredictor football messi ronaldo earnpoints 2018 FIFA World Cup Russia">
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120655950-1"></script>
     <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    @if(env('APP_ENV')==='production')
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120655950-1"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    gtag('config', 'UA-120655950-1');
-    </script>
+      gtag('config', 'UA-120655950-1');
+      </script>
+    @endif
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -172,6 +174,7 @@
         </div>
       </footer>
     @yield('sub-scripts')
+    @if(env('APP_ENV')==='production')
     <!--Start of Tawk.to Script-->
         <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -185,5 +188,6 @@
         })();
         </script>
         <!--End of Tawk.to Script-->
+    @endif
 </body>
 </html>
