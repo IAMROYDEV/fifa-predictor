@@ -151,7 +151,9 @@
                 position: fixed;top: 20px;left:25%;z-index:100;display:none;
             }
         }
-        
+        .custom-control-label:before {
+            border: 1px solid #000;
+        }
 
     </style>
 </div>
