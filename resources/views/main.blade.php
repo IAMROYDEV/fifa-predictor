@@ -376,7 +376,13 @@
                 var d=new Date().getTimezoneOffset();
                 return (d+(2*-d));
             }
+            if(!document.cookie.match(/timezone/g)){
+                document.cookie = `timezone=${getOffset()}`
+                window.location.reload();
+            }
             document.cookie = `timezone=${getOffset()}`
+
+
         });
     </script>
     @if(env('APP_ENV')==='production')

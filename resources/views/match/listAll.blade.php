@@ -31,7 +31,7 @@
                     <div class="text-muted mb-4" style="margin-bottom: 10px; color: #080808cf; font-weight: bold">
                         {{$match->matchStage->title}}
                         @if($match->played_date):
-                        {{$match->played_date->addMinutes($_COOKIE['timezone'])->format('D, d/m h:i A')}}
+                        {{$match->played_date->addMinutes(isset($_COOKIE['timezone']) ? $_COOKIE['timezone']:0)->format('D, d/m h:i A')}}
                         @endif
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
