@@ -88,7 +88,8 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Your Players</h3>
+                    <h3 class="card-title">Your Players </h3>
+                    <span> (<span class="selected-player">{{count($user->players)}}</span> selected)</span>
                     @if(!$user->is_team_locked)
                     <div class="row button-right" style=" right: 30px;"><button class="btn btn-pill btn-secondary lock-team"><i class="fe fe-lock mr-2"></i>Lock the team</button></div>
                     @endif
@@ -311,6 +312,8 @@
                                 $('.add-ply-tbody .tr-'+playerId+' button').html('<i class="fe fe-trash mr-2"></i> Remove');
                                 $('.remove-ply-tbody').append(data);
                             }
+                            var totalPlayer = jQuery('.remove-ply-tbody tr').length;
+                            jQuery('.selected-player').text(totalPlayer);
                             $('.add-ply-tbody .tr-'+playerId+' button').toggleClass('btn-success');
                             $('.add-ply-tbody .tr-'+playerId+' button').toggleClass('btn-danger');
                         }

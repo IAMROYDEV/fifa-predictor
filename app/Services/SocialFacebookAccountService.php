@@ -24,10 +24,15 @@ class SocialFacebookAccountService
             ]);
 
             $user = User::whereEmail($providerUser->getEmail())->first();
-
+            if(!$user) {
+                $socialfacebookapp = SocialFacebookAccount::where('provider_user_id', $providerUser->getId())->first();
+                if($socialfacebookapp) {
+                    $user = $socialfacebookapp->user;
+                }
+            }
             if (!$user) {
                 $user = User::create([
-                    'email' => $providerUser->getEmail(),
+                    'email' => ($providerUser->getEmail()) ? $providerUser->getEmail() : $providerUser->getId(),
                     'name' => $providerUser->getName(),
                     'password' => md5(rand(1, 10000)),
                     'avatar' => $providerUser->getAvatar()
