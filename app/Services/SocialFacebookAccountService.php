@@ -24,9 +24,9 @@ class SocialFacebookAccountService
             ]);
 
             $user = User::whereEmail($providerUser->getEmail())->first();
-            if(!$user) {
+            if (!$user) {
                 $socialfacebookapp = SocialFacebookAccount::where('provider_user_id', $providerUser->getId())->first();
-                if($socialfacebookapp) {
+                if ($socialfacebookapp) {
                     $user = $socialfacebookapp->user;
                 }
             }
@@ -37,7 +37,11 @@ class SocialFacebookAccountService
                     'password' => md5(rand(1, 10000)),
                     'avatar' => $providerUser->getAvatar()
                 ]);
-                SlackService::sendMessage("new user registered \nname *{$user->name}*\nemail {$user->email}");
+                SlackService::sendMessage("new user registered \nname *{$user->name}*\nemail {$user->email}\nID {$user->id}");
+                if ($user->id % 50 ===0) {
+                    $number=$user->id %50;
+                    SlackService::sendMessage(":tada: :confetti_ball::confetti_ball: \nwe have {$number} users now\n:tada: :confetti_ball::confetti_ball:");
+                }
             }
 
             $account->user()->associate($user);

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Match extends Model
 {
+    public $dates = ['played_date'];
     protected $guarded =[] ;
     public function teamA()
     {

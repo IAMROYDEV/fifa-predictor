@@ -15,3 +15,6 @@
 
 
 @endsection
+@section('metadata')
+<title>Privacy - fifa8teen</title>
+@endsection

@@ -35,20 +35,31 @@
 @section('sub-scripts')
 <script>
     window.onload = function () {
+        function getOffset(){
+                var d=new Date().getTimezoneOffset();
+                return (d+(2*-d));
+            }
+            document.cookie = `timezone=${getOffset()}`
+        $.ajax({
+                    type: "GET",
+                    url: "/users/set-timezone?timezone="+getOffset(),
+                    success: function(data) {
+                        console.log(true);
+                    }
+        });
         $.getJSON('https://timezoneapi.io/api/ip', function(data){
             // Request OK?
             if(data.meta.code == '200'){
                 var city = data.data.timezone.id;
                 $.ajax({
                     type: "GET",
-                    url: "/users/set-timezone?timezone="+city,
+                    url: "/users/set-timezone-city?timezoneCity="+city,
                     success: function(data) {
-                        console.log(data);
+                        console.log(true);
                     }
                 });
             }
         });
-        
         require(['jquery', 'selectize'], function ($, selectize) {
                 $(function(){
                     $('#team_id,#player_id').selectize({

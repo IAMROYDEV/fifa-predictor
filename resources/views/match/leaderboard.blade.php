@@ -13,4 +13,6 @@
     </div>
 </div>
 @endsection
-
+@section('metadata')
+<title>Leaderboard - fifa8teen</title>
+@endsection

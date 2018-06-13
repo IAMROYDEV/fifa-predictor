@@ -52,7 +52,19 @@ class UserDashboardController extends Controller
     {
         $user=auth()->user();
         $timezone = $request->all();
-        $user->timezone = $timezone['timezone'];
+        $user->timezone_offset = $timezone['timezone'];
+        $user->save();
+        return response()->json([
+            'status'  => 200,
+            'message' => 'timezone set successfully',
+            'results' => 1,
+        ], 200);
+    }
+    public function setTimezoneCity(Request $request)
+    {
+        $user=auth()->user();
+        $timezone = $request->all();
+        $user->timezone = $timezone['timezoneCity'];
         $user->save();
         return response()->json([
             'status'  => 200,

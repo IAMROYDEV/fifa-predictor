@@ -7,7 +7,7 @@
         <div class="card-header">
             <h3 class="card-title">Rules</h3>
         </div>
-        <div class="card-body text-left" style="padding: 20px;">
+        <div class="card-body text-left" style="padding: 20px;color: #000;font-weight: bold;">
         	<h2>Top scoring squad</h2> 
             <ul>
             	<li>You can create a squad consisting of eleven (11) players who you think will score the most goals during the entire tournament (mostly strikers).</li>
@@ -48,4 +48,7 @@
 </div>
 
 
+@endsection
+@section('metadata')
+<title>Rules - fifa8teen</title>
 @endsection

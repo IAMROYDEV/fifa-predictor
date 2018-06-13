@@ -6,9 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#88b02c" />
         <meta name="Description" content="Create top scoring squad and predict the match score during the 2018 FIFA world cup and earn points. Stand a chance to win exciting prizes at the end of the tournament.">
-<meta name="Keywords" content="fifa8teen fifaworldcup fifa worldcup matchpredictor football messi ronaldo earnpoints 2018 FIFA World Cup Russia">
-        <title>fifa8teen</title>
-
+        <meta name="Keywords" content="fifa8teen fifaworldcup fifa worldcup matchpredictor football messi ronaldo earnpoints 2018 FIFA World Cup Russia">
+        @yield('metadata')
         <!-- Fonts -->
         <link rel="icon" href="{{asset('img/Fantasy-football-edge-logo-transparent.png')}}" type="image/gif" sizes="16x16">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -293,7 +292,8 @@
               margin: 0 auto 5px;
               background-color: rgba(225,225,225,1);  
             }
-            .navbar-inverse .navbar-nav>li>a.fb-link:hover {
+            .navbar-inverse .navbar-nav>li>a.fb-link:hover,
+            .navbar-inverse .navbar-nav>li>a.fb-link:focus {
                 background: none;
             }
             @media (max-width: 767px) {
@@ -372,13 +372,11 @@
     </body>
     <script>
         $(document).ready(function(){
-            
-            $.getJSON('https://timezoneapi.io/api/ip', function(data){
-                if(data.meta.code == '200'){
-                    var city = data.data.timezone.id;
-                    document.cookie = "timezone="+city;
-                }
-            });
+            function getOffset(){
+                var d=new Date().getTimezoneOffset();
+                return (d+(2*-d));
+            }
+            document.cookie = `timezone=${getOffset()}`
         });
     </script>
     <!--Start of Tawk.to Script-->

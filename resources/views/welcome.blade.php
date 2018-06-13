@@ -25,3 +25,7 @@
 
 </div>
 @endsection
+@section('metadata')
+<title>fifa8teen</title>
+<meta property="og:image" content="{{asset('img/Fantasy-football-edge-logo-transparent.png')}}"/>
+@endsection
