@@ -60,4 +60,16 @@ class UserDashboardController extends Controller
             'results' => 1,
         ], 200);
     }
+    public function setTimezoneCity(Request $request)
+    {
+        $user=auth()->user();
+        $timezone = $request->all();
+        $user->timezone = $timezone['timezoneCity'];
+        $user->save();
+        return response()->json([
+            'status'  => 200,
+            'message' => 'timezone set successfully',
+            'results' => 1,
+        ], 200);
+    }
 }
