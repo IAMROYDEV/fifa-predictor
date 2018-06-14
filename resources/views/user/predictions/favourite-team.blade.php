@@ -17,10 +17,10 @@
          @if($changeField!=='favourite team'  && $data)
          <div class="row">
              <div class="col-sm-12 text-center">
-                 <h1>{{$data->team->name}}</h1>
+                 <h3>{{$data->team->name}}</h3>
              </div>
              <div class="col-sm-12 text-center">
-                 <img src="/assets/images/flags/{{$data->team->code}}.svg" alt="" height="120">
+                 <img src="/assets/images/flags/{{$data->team->code}}.svg" alt="" height="80">
              </div>
          </div>
          @else

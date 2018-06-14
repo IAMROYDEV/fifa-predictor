@@ -15,11 +15,11 @@
         @if($changeField!=='golden glove' && $data)
              <div class="row">
                 <div class="col-sm-12 text-center">
-                    <h1>{{$data->player->name}}</h1>
+                    <h3>{{$data->player->name}}</h3>
                 </div>
                  <div class="col-sm-12 text-center">
                  <img src="/assets/images/flags/{{$data->player->team->code}}.svg" alt=""
-                 title="{{$data->player->team->name}}" height="120">
+                 title="{{$data->player->team->name}}" height="80">
                 </div>
                 
              </div>

@@ -24,28 +24,33 @@ class UserDashboardController extends Controller
     
     public function index()
     {
-        $userID=auth()->user()->id;
-        $predictions=UserGlobalPrediction::whereUserId($userID)->groupBy('predictor')->get();
-        $allowChange=GlobalSetting::whereRule('GLOBAL_PREDICTION_ALLOW_CHANGE')->first();
-        if ($allowChange && $allowChange->flag) {
-            $allowChange=true;
-        } else {
-            $allowChange=false;
-        }
-        $user=auth()->user();
-        $teams=Team::orderBy('name', 'ASC')->get();
-        $players=Player::orderBy('team_id')->orderBy('name', 'ASC')->get();
-        $gks=Player::orderBy('team_id')->orderBy('name', 'ASC')->where('position', 'LIKE', "%gk%")->get();
-        $changeField=request('change');
-        // \Session::flash('error', "Special message goes here");
-        $currentMatch = $currentMatchPrediction = '';
-        $currentMatch = Match::where('played_date', '>=', \Illuminate\Support\Carbon::today()->toDateString())->orderBy('played_date', 'ASC')->first();
-        if ($currentMatch) {
-            $currentMatchPrediction = UserMatchPrediction::where('match_id', $currentMatch->id)
+        try {
+            $userID=auth()->user()->id;
+            $predictions=UserGlobalPrediction::whereUserId($userID)->groupBy('predictor')->get();
+            $allowChange=GlobalSetting::whereRule('GLOBAL_PREDICTION_ALLOW_CHANGE')->first();
+            if ($allowChange && $allowChange->flag) {
+                $allowChange=true;
+            } else {
+                $allowChange=false;
+            }
+            $user=auth()->user();
+            $teams=Team::orderBy('name', 'ASC')->get();
+            $players=Player::orderBy('team_id')->orderBy('name', 'ASC')->get();
+            $gks=Player::orderBy('team_id')->orderBy('name', 'ASC')->where('position', 'LIKE', "%gk%")->get();
+            $changeField=request('change');
+            // \Session::flash('error', "Special message goes here");
+            $currentMatch = $currentMatchPrediction = '';
+            $currentMatch = Match::where('played_date', '>=', \Illuminate\Support\Carbon::today()->toDateString())->orderBy('played_date', 'ASC')->first();
+            if ($currentMatch) {
+                $currentMatchPrediction = UserMatchPrediction::where('match_id', $currentMatch->id)
                                     ->where('user_id', $userID)->first();
-        }
+            }
 
-        return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user', 'currentMatch', 'currentMatchPrediction', 'gks'));
+            return view('user.dashboard', compact('teams', 'players', 'predictions', 'allowChange', 'changeField', 'user', 'currentMatch', 'currentMatchPrediction', 'gks'));
+        } catch (\Exception $e) {
+            \Log::info('Error on dashboard ' . $e->getMessage());
+            return redirect('/');
+        }
     }
     
     public function setTimezone(Request $request)
