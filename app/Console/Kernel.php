@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\updateGoalScored::class,
         Commands\SetMatchLocked::class,
-        Commands\SetSquadScore::class
+        Commands\SetSquadScore::class,
+        Commands\SetMatchPredictionScore::class
     ];
 
     /**
