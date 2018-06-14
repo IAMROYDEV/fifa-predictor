@@ -21,7 +21,7 @@ class AddMatchesTable extends Migration
             $table->integer('team1_score')->nullable();
             $table->integer('team2_score')->nullable();
             $table->boolean('is_draw')->default(0);
-            $table->dateTime('is_done')->nullable();
+            $table->boolean('is_done')->default(0);
             $table->dateTime('played_date')->nullable();
             $table->integer('world_cup_id');
             $table->integer('match_stage_id');
