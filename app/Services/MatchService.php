@@ -100,6 +100,8 @@ class MatchService
                     $userMatchPrediction->save();
                     $user->match_prediction_score = $user->match_prediction_score + $points;
                     $user->save();
+                    $match->match_prediction_score_done = 1;
+                    $match->save();
                 }
             }
         }
