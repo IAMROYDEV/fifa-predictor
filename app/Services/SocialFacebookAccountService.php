@@ -39,8 +39,7 @@ class SocialFacebookAccountService
                 ]);
                 SlackService::sendMessage("new user registered \nname *{$user->name}*\nemail {$user->email}\nID {$user->id}");
                 if ($user->id % 50 ===0) {
-                    $number=$user->id %50;
-                    SlackService::sendMessage(":tada: :confetti_ball::confetti_ball: \nwe have {$number} users now\n:tada: :confetti_ball::confetti_ball:");
+                    SlackService::sendMessage(":tada: :confetti_ball::confetti_ball: \nwe have achieved milestone now\n:tada: :confetti_ball::confetti_ball:");
                 }
             }
 
