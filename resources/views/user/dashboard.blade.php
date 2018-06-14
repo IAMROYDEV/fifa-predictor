@@ -16,6 +16,9 @@
                 @include('user.predictions.favourite-team')
             </div>
             <div class="col-md-12">
+                @include('user.predictions.worldcup-winner')
+            </div>
+            <div class="col-md-12">
                 @include('user.predictions.golden-ball')
             </div>
             <div class="col-md-12">
@@ -23,9 +26,6 @@
             </div>
             <div class="col-md-12">
                 @include('user.predictions.golden-glove')
-            </div>
-            <div class="col-md-12">
-                @include('user.predictions.worldcup-winner')
             </div>
         </div>
     </div>
