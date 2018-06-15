@@ -29,8 +29,8 @@
             </div>
         </div>
     </div>
-    
 </div>
+@include('alert')
 @endsection
 @section('sub-scripts')
 <script>
@@ -61,6 +61,31 @@
             }
         });
         require(['jquery', 'selectize'], function ($, selectize) {
+                $(function(){
+                    $('.global-choice').change(function(){
+                        let th=$(this);
+                        let predictor = th.closest('form').find('[name=predictor]').val();
+                        $.post({
+                            url : "{{route('user.favourite')}}",
+                            data : {
+                                predictor,
+                                ...(th.attr('name')==='player_id' ? {'player_id':th.val()}:{'team_id':th.val()})
+                            },
+                            success : function(resp){
+                                $('#alert-success').html(`${resp.message} predictions`)
+                                $('#alert-success').parent().attr('style','display:block')
+                                $('#alert-success').parent().fadeOut(5000);
+                            },error(err){
+                                var resp=err && err.responseJSON && err.responseJSON.message
+                                $('#alert-danger').html(`${resp}`)
+                                $('#alert-danger').parent().attr('style','display:block')
+                                $('#alert-danger').parent().fadeOut(5000);
+                            },always(){
+
+                            }
+                        })
+                    });
+                })
                 $(function(){
                     $('#team_id,#player_id').selectize({
                         render: {

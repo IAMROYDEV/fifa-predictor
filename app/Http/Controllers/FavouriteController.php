@@ -24,12 +24,13 @@ class FavouriteController extends Controller
         $user=auth()->user();
         $team_id=request('team_id');
         $player_id=request('player_id');
+
         if (!$predictor || !$user || (!$team_id && !$player_id)) {
             // dd(request()->all());
-            return redirect()->back()->with('error', 'team or player missing');
+            return abort(500, 'team or player missing');
         }
         if (!$allowChange || !$allowChange->flag) {
-            return redirect()->route('user.dashboard')->with('error', 'change disabled');
+            return abort(500, 'change disabled');
         }
         $prediction=UserGlobalPrediction::wherePredictor($predictor)->where(function ($query) use ($player_id,$team_id) {
             $query->where('player_id', $player_id)
@@ -48,6 +49,6 @@ class FavouriteController extends Controller
             ]);
         }
         
-        return redirect()->route('user.dashboard')->with('success', "{$predictor} chosen successfully");
+        return response()->json(["message"=>"successfully updated your {$predictor}"]);
     }
 }

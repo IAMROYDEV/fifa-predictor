@@ -26,7 +26,7 @@
         @else
         <div class="row">
            <div class="form-group col-md-12">
-               <select name="player_id" id="player_id" class="form-control" required>
+               <select name="player_id" id="player_id" class="form-control  global-choice" required>
                    <option value="">Select Goalkeeper</option>
                     @foreach($gks as $player)
                     {{-- {{ ($slectedCode == $player->code ? "selected":"") }} --}}
@@ -40,11 +40,11 @@
            </div>
          </div>
          <div class="row">
-             <div class="col text-center">
+             {{-- <div class="col text-center">
                <button type="submit" class="btn btn-pill btn-secondary">
                    <i class="fe fe-check"></i> Save
                </button>
-             </div>
+             </div> --}}
          </div>
          @endif
          <div class="row row-cards row-deck"></div>
