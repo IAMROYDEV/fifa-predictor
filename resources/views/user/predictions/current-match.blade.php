@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         @if($currentMatch)
-        Upcoming match Predictions
+        Upcoming match predictions
         @else
         Match Predictions
         @endif
@@ -9,6 +9,11 @@
     </div>
     <div class="card-body text-center">
         @if($currentMatch)
+            @if(auth()->user()->match_prediction_score)
+                <p class="text-center">
+                    <b>Your prediction score {{auth()->user()->match_prediction_score}} ⭐ </b>
+                </p>
+            @endif
         <div class="text-muted mb-4">
             {{$currentMatch->matchStage->title}}
             @if($currentMatch->played_date):
