@@ -30,7 +30,8 @@ class SocialAuthFacebookController extends Controller
             if (!$request->has('code') || $request->has('denied')) {
                 return redirect('/');
             }
-            $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+            $user = $service->createOrGetUser(Socialite::driver('facebook')->stateless()->user());
+           
             auth()->login($user);
             if ($user->is_admin) {
                 return redirect()->route('admin');
