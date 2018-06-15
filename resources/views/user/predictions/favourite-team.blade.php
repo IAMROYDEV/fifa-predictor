@@ -6,7 +6,7 @@
     <div class="card-header">
         Your Favourite Team
         @if($allowChange && $data)
-            <a href="?change=favourite team" class="btn btn-success button-right">
+            <a href="?change=favourite team" class="btn btn-sm btn-outline-primary button-right">
                 <i class="fe fe-plus-square"></i>  Change
             </a>
         @endif

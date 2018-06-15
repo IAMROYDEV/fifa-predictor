@@ -5,7 +5,7 @@
     <div class="card-header">
         Golden Boot Winner
         @if($allowChange && $data)
-            <a href="?change=golden boot" class="btn btn-success button-right">
+            <a href="?change=golden boot" class="btn btn-sm btn-outline-primary button-right">
                 <i class="fe fe-plus-square"></i>  Change
             </a>
         @endif

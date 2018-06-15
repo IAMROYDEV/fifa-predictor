@@ -5,7 +5,7 @@
     <div class="card-header">
         World Cup Winners
         @if($allowChange && $data)
-        <a href="?change=world cup winner" class="btn btn-success button-right">
+        <a href="?change=world cup winner" class="btn btn-sm btn-outline-primary button-right">
             <i class="fe fe-plus-square"></i>  Change
         </a>
         @endif

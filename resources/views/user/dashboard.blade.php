@@ -74,6 +74,7 @@
                             success : function(resp){
                                 $('#alert-success').html(`${resp.message} predictions`)
                                 $('#alert-success').parent().attr('style','display:block')
+                                window.location.href=window.location.href.split('?').shift();
                                 $('#alert-success').parent().fadeOut(5000);
                             },error(err){
                                 var resp=err && err.responseJSON && err.responseJSON.message
