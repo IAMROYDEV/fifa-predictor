@@ -40,7 +40,7 @@ class UserDashboardController extends Controller
             $changeField=request('change');
             // \Session::flash('error', "Special message goes here");
             $currentMatch = $currentMatchPrediction = '';
-            $currentMatch = Match::where('played_date', '>=', \Illuminate\Support\Carbon::today()->toDateString())->orderBy('played_date', 'ASC')->first();
+            $currentMatch = Match::where('is_done', '0')->orderBy('played_date', 'ASC')->first();
             if ($currentMatch) {
                 $currentMatchPrediction = UserMatchPrediction::where('match_id', $currentMatch->id)
                                     ->where('user_id', $userID)->first();

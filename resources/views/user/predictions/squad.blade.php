@@ -3,8 +3,13 @@
         <h3 class="card-title">Your Top Scorer Squad</h3>
         <i class="fe fe-help-circle button-right" data-toggle="tooltip" data-placement="top" title="Create a squad of 11 players. who will score the most goals during the entire tournament. Each goal by the player in your squad will earn you 10 points and double the points for the selected captain. Make sure you lock the squad to start collecting points.!!"></i>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="overflow-x: scroll;">
         @if($user->is_team_locked)
+            @if(auth()->user()->squad_score)
+                <p class="text-center">
+                    <b>Your squad score {{auth()->user()->squad_score}} ⭐ </b>
+                </p>
+            @endif
             <table class="table card-table table-vcenter text-nowrap">
                 <thead>
                     <tr>
