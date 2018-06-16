@@ -1,5 +1,5 @@
 <div class="clearfix"></div>
-<h2>Top {{$rankLimit}} Dominators</h2>
+<h2>Top Dominators</h2>
 <legend>This lists includes all points including squad scores,match predictions & global predictions</legend>
 @include('leaderboard.auth-message')
 
@@ -13,7 +13,11 @@
     </thead>
     <tbody>
         @foreach($all as $squad)
-            <tr>
+            <tr
+            @if(auth()->user() && $squad->user_id==auth()->user()->id)
+             class="self-rank"
+            @endif
+            >
                 <td>
                     {{$squad->rank}}
                     @if($squad->up_down)

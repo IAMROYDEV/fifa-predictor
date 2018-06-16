@@ -35,4 +35,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Player', 'user_player')->withTimestamps();
     }
+
+    public function leaderboards()
+    {
+        return
+        $this->hasMany(Leaderboard::class);
+    }
 }

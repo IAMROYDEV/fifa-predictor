@@ -1,7 +1,15 @@
 <div class="clearfix"></div>
-<h2>Top {{$rankLimit}} Match Predictors</h2>
+<h2>Top Match Predictors</h2>
 <legend>This lists includes players with most successfull match predictions</legend>
 @include('leaderboard.auth-message')
+@if(auth()->user() )
+<div class="alert alert-warning" role="alert" style="font-size: 16px">
+    @if($selfRank && !count($selfRank->where('type','predictions')))
+        It seems you still have not selected or locked your squad 
+    @endif
+    <a href="/match/prediction/1" class="btn btn-warning">Click here to update your score predictions</a>
+</div>
+@endif
 <table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
     <thead>
         <tr>
@@ -12,7 +20,11 @@
     </thead>
     <tbody>
         @foreach($predictions as $squad)
-            <tr>
+            <tr
+            @if(auth()->user() && $squad->user_id==auth()->user()->id)
+             class="self-rank"
+            @endif
+            >
                 <td>
                     {{$squad->rank}}
                     @if($squad->up_down)

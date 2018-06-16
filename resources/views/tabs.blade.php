@@ -1,5 +1,5 @@
 <style>
-    section {
+section {
   display: none;
   padding: 20px 0 0;
   border-top: 1px solid #ddd;
@@ -13,6 +13,9 @@ input {
 }
 .fa-chevron-down{
   color:red;
+}
+.self-rank{
+  background-color: #fff0a5;
 }
 .label {
     position: relative;
@@ -86,7 +89,7 @@ input:checked + label {
 </style>
 <input id="tab2" type="radio" name="tabs" {{$type=='predictions' || !$type ? 'checked' : ''}}>
 <label for="tab2">
-    <i class="fa fa-signing"></i> Match Predictor
+    <i class="fa fa-signing"></i> Match Predictors
     <i class="fa fa-info-circle" title="Top match scores predictors ranking " data-toggle="tooltip" title="Hooray!"></i>
 </label>
 <input id="tab1" type="radio" name="tabs" {{$type=='squads' ? 'checked' : ''}}>

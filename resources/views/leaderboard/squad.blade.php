@@ -1,8 +1,12 @@
 <div class="clearfix"></div>
-<h2>Top {{$rankLimit}} Goal Scorer Squads</h2>
+<h2>Top Goal Scorer Squads</h2>
 <legend>This lists includes players with most successfull squads of goal scorers</legend>
 @include('leaderboard.auth-message')
-
+@if(auth()->user() && $selfRank && !count($selfRank->where('type','squad')))
+    <div class="alert alert-warning" role="alert" style="font-size: 16px">
+     It seems you still have not selected or locked your squad <a href="/users-squad" class="btn btn-warning">Click here to create your squad</a>
+    </div>
+@endif
 <table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
     <thead>
         <tr>
@@ -13,7 +17,11 @@
     </thead>
     <tbody>
         @foreach($squads as $squad)
-            <tr>
+            <tr
+            @if(auth()->user() && $squad->user_id==auth()->user()->id)
+             class="self-rank"
+            @endif
+            >
                 <td>
                     {{$squad->rank}}
                     @if($squad->up_down)
