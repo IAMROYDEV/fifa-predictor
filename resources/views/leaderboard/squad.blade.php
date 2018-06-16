@@ -1,6 +1,8 @@
 <div class="clearfix"></div>
 <h2>Top {{$rankLimit}} Goal Scorer Squads</h2>
 <legend>This lists includes players with most successfull squads of goal scorers</legend>
+@include('leaderboard.auth-message')
+
 <table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
     <thead>
         <tr>

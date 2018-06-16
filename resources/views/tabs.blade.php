@@ -50,7 +50,10 @@ label:hover {
   color: #888;
   cursor: pointer;
 }
-
+td {
+  font-size:16px;
+  font-weight: bold;
+}
 input:checked + label {
   color: #555;
   border: 1px solid #ddd;
