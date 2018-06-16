@@ -1,5 +1,5 @@
 <div class="clearfix"></div>
-<h2>Top Dominators</h2>
+<h2>Top {{$rankLimit}} Dominators</h2>
 <legend>This lists includes all points including squad scores,match predictions & global predictions</legend>
 <table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
     <thead>

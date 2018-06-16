@@ -1,6 +1,6 @@
 <div class="clearfix"></div>
-<h2>Top Match Predictors</h2>
-<legend>This lists includes players with most successfull match predictons</legend>
+<h2>Top {{$rankLimit}} Match Predictors</h2>
+<legend>This lists includes players with most successfull match predictions</legend>
 <table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
     <thead>
         <tr>
