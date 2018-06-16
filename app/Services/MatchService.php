@@ -33,7 +33,10 @@ class MatchService
         $matches = Match::where([['is_done', 1],['squad_score_done', 0]])->get();
         $users = User::where('is_team_locked', 1)->get();
         foreach ($matches as $match) {
-            $scorers = PlayerLog::where('match_id', $match->id)->pluck('goals_scored', 'player_id')->toArray();
+            $scorers = PlayerLog::select('player_id', DB::raw(' sum(goals_scored) as goals_scored'))
+            ->where('match_id', $match->id)
+            ->groupBy('player_id')
+            ->pluck('goals_scored', 'player_id')->toArray();
             foreach ($users as $user) {
                 $points = 0;
                 $squadScorers = DB::table('user_player')->whereIn('player_id', array_keys($scorers))->where('user_id', $user->id)->pluck('player_id')->toArray();
