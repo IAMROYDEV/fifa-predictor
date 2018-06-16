@@ -69,3 +69,4 @@ Route::get('/matches', 'MatchController@listAllMatches');
 // Route::get('/leaderboard', 'MatchController@leaderboard');
 Route::get('/users/set-timezone-city', 'UserDashboardController@setTimezoneCity');
 Route::get('/leaderboard', 'LeaderboardController@index');
+Route::get('/leaderboard/{type}', 'LeaderboardController@index');

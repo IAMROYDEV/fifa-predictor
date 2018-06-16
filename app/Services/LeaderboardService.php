@@ -45,8 +45,9 @@ class LeaderboardService
             $lead->type=$type;
             $lead->user_id=$col->user_id;
             $lead->points=$col->total_points;
-            if ($lead->rank) {
+            if ($lead->rank && $lead->rank!=$col->rank) {
                 $lead->up_down=($lead->rank > $col->rank) ? 'up' : 'down';
+                $lead->rank_diff=$lead->rank - $col->rank;
             }
             $lead->rank=$col->rank;
             $lead->save();

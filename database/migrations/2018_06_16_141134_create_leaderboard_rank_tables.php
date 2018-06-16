@@ -20,6 +20,7 @@ class CreateLeaderboardRankTables extends Migration
             $table->integer('rank')->nullable()->default(0);
             $table->integer('points')->default(0);
             $table->enum('up_down', ['up','down'])->nullable();
+            $table->integer('rank_diff')->nullable()->default(0);
             $table->timestamps();
         });
     }

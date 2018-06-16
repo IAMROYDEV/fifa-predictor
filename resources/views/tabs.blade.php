@@ -8,7 +8,24 @@
 input {
   display: none;
 }
-
+.fa-chevron-up {
+  color:greenyellow;
+}
+.fa-chevron-down{
+  color:red;
+}
+.label {
+    position: relative;
+    height: 20px;
+    left: -19px;
+    bottom: -14px;
+    font-size: 11px;
+    width: 20px;
+    display: inline-block;
+    border-radius: 30px;
+    padding-top: 4px;
+    padding-left: 5px;
+}
 label {
   display: inline-block;
   margin: 0 0 -1px;
@@ -64,21 +81,22 @@ input:checked + label {
   }
 }
 </style>
-<input id="tab1" type="radio" name="tabs" checked>
-<label for="tab1">
-    <i class="fa fa-soccer-ball-o"></i>  Squad 
-    <i class="fa fa-genderless" title="Current Top Squads leaderboard" data-toggle="tooltip" title="Hooray!"></i>
-</label> 
-<input id="tab2" type="radio" name="tabs">
+<input id="tab2" type="radio" name="tabs" {{$type=='predictions' || !$type ? 'checked' : ''}}>
 <label for="tab2">
-    <i class="fa fa-signing"></i> Match Prediction
-    <i class="fa fa-genderless" title="Match Predictions" data-toggle="tooltip" title="Hooray!"></i>
+    <i class="fa fa-signing"></i> Match Predictor
+    <i class="fa fa-info-circle" title="Top match scores predictors ranking " data-toggle="tooltip" title="Hooray!"></i>
 </label>
+<input id="tab1" type="radio" name="tabs" {{$type=='squads' ? 'checked' : ''}}>
+<label for="tab1">
+    <i class="fa fa-soccer-ball-o"></i>  Goal Scorers 
+    <i class="fa fa-info-circle" title="Top goal scorer squads ranking" data-toggle="tooltip" title="Hooray!"></i>
+</label> 
 
-<input id="tab3" type="radio" name="tabs">
+
+<input id="tab3" type="radio" name="tabs" {{$type=='all' ? 'checked' : ''}}>
 <label for="tab3">
-<i class="fa fa-pied-piper"></i> Main
-    <i class="fa fa-genderless" title="Current overall standing" data-toggle="tooltip" title="Hooray!"></i>
+<i class="fa fa-pied-piper"></i> Dominators
+    <i class="fa fa-info-circle" title="Main ranking" data-toggle="tooltip" title="Hooray!"></i>
 </label>
 
 
@@ -87,11 +105,11 @@ input:checked + label {
 </section>
 
 <section id="content2">
-    @include('leaderboard.squad')
+    @include('leaderboard.match-prediction')
 </section>
 
 <section id="content3">
-    @include('leaderboard.squad')
+    @include('leaderboard.all')
 </section>
 <script>
 $(document).ready(function(){
