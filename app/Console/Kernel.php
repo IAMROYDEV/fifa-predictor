@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         Commands\updateGoalScored::class,
         Commands\SetMatchLocked::class,
         Commands\SetSquadScore::class,
-        Commands\SetMatchPredictionScore::class
+        Commands\SetMatchPredictionScore::class,
+        Commands\CalculateLeaderBoardRanks::class
     ];
 
     /**
