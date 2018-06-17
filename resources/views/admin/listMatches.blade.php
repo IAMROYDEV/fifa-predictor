@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+<style>
+    .prev-match{
+        background-color: #ccc;
+        color:darkgray;
+    }
+</style>
 @section('content')
 <div class="container">
     <div class="card">
@@ -98,21 +103,33 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        <?php $now=new \Carbon\Carbon ?>
                         <tbody class="add-ply-tbody">
                             @if($matches)
                             @foreach($matches as $key=>$match)
-                            <tr>
+                            <tr
+                            {{$now->diffInHours($match->played_date,false) < 0 ? "class=prev-match" :''}}
+                            >
                                 <td>
-                                    {{$key + 1}}
+                                    {{$loop->index + 1}}
                                 </td>
                                 <td>
+                                    <img src="/assets/images/flags/{{$match->teamA->code}}.svg" alt="" height="20">
                                     {{$match->teamA->name}} 
+                                    @if($match->team1_score)
+                                        <span class="alert">({{$match->team1_score}})</span>
+                                    @endif
                                 </td>
                                 <td>
+                                    <img src="/assets/images/flags/{{$match->teamB->code}}.svg" alt="" height="20">
                                     {{$match->teamB->name}} 
+                                    @if($match->team2_score)
+                                        <span class="alert">({{$match->team2_score}})</span>
+                                    @endif
                                 </td>
                                 <td>
                                     {{$match->played_date}} 
+                                    ({{$match->played_date->diffForHumans()}})
                                 </td>
                                 <td>
                                     <a class="icon" href="{{route('editmatch', $match->id)}}">

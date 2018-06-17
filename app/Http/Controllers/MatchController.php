@@ -11,7 +11,7 @@ use App\WorldCup;
 use App\Http\Requests\AddMatchRequest;
 use App\Player;
 use App\PlayerLog;
-
+use Carbon\Carbon;
 class MatchController extends Controller
 {
     /**
@@ -74,9 +74,27 @@ class MatchController extends Controller
         $teams = Team::get();
         $tournaments = WorldCup::get();
         $matches = Match::get();
+        $matches=$this->_sortAccordingToRecentDate($matches,'played_date');
         return view('admin.listMatches', ['teams' => $teams, 'tournaments' => $tournaments, 'matches' => $matches]);
     }
+    private function _sortAccordingToRecentDate($collections,$field='created_at'){
+        $count=count($collections)*1000;
+        $now=new Carbon;
+        $collections=$collections->sortBy(function($row,$index) use($now,$field,$count){
+            $field=($row->$field);
+            $date=class_basename($field==='Carbon') ? : new Carbon($field);
+            $diff=$now->diffInHours($date, false);
+
+            if($diff<0){
+                return $count-$index;
+            }
+            return $diff;
+            
+        });
+        return $collections;
+    }
     
+
     public function addMatches(AddMatchRequest $request)
     {
         if (isset($request->validator) && $request->validator->fails()) {
