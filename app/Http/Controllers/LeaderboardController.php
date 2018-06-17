@@ -15,6 +15,7 @@ class LeaderboardController extends Controller
         // }
         $rankLimit=25;
         $type=$type ? : request('type');
+        $type=$type==='squads' ? 'squad' : $type;
         $squads=Leaderboard::whereType('squad')
                     ->orderBy('rank', 'ASC')->whereNotNull('rank')
                     ->where('rank', '>', 0)

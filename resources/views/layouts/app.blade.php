@@ -81,6 +81,9 @@
                       <a href="/admin" class="nav-link active"><i class="fe fe-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
+                      <a href="/dashboard" class="nav-link active"><i class="fe fe-pocket"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/admin/users" class="nav-link active"><i class="fe fe-users"></i>Users</a>
                     </li>
                     <li class="nav-item">

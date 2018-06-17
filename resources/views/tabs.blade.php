@@ -94,7 +94,7 @@ input:checked + label {
     <i class="fa fa-signing"></i> Match Predictors
     <i class="fa fa-info-circle" title="Top match scores predictors ranking " data-toggle="tooltip" title="Hooray!"></i>
 </label>
-<input id="tab1" type="radio" name="tabs" {{$type=='squads' ? 'checked' : ''}}>
+<input id="tab1" type="radio" name="tabs" {{$type=='squads' || $type=='squad'  ? 'checked' : ''}}>
 <label for="tab1">
     <i class="fa fa-soccer-ball-o"></i>  Goal Scorers 
     <i class="fa fa-info-circle" title="Top goal scorer squads ranking" data-toggle="tooltip" title="Hooray!"></i>
