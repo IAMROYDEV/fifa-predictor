@@ -13,7 +13,7 @@ class LeaderboardController extends Controller
         // if (!auth()->user() || !auth()->user()->is_admin) {
         //     return view('match.leaderboard');
         // }
-        $rankLimit=7;
+        $rankLimit=25;
         $type=$type ? : request('type');
         $squads=Leaderboard::whereType('squad')
                     ->orderBy('rank', 'ASC')->whereNotNull('rank')
