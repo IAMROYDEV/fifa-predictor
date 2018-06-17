@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
         
@@ -313,14 +314,16 @@
                     font-size: 22px;
                 }
                 .nav.navbar-nav.navbar-right li a {
-                        padding-right: 20px;
+                    padding-right: 20px;
                     padding-left: 30px;
                 }
             }
+
+            
         </style>
     </head>
     <body>
-        <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+        <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" style="background-color: #000">
             <div class="container">
                 <div class="navbar-header">
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
