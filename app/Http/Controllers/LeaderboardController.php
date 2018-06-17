@@ -27,7 +27,7 @@ class LeaderboardController extends Controller
                     ->orderBy('rank', 'ASC')->whereNotNull('rank')
                     ->where('rank', '>', 0)
                     ->where('rank', '<=', $rankLimit)->get();
-        $selfRank='';
+        $selfRank=collection([]);
         if (auth()->user()) {
             $selfRank=auth()->user()->leaderboards;
         }
