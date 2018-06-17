@@ -103,9 +103,9 @@ class MatchController extends Controller
         unset($params['_token']);
         $match = Match::where('id', $match_id)->update($params);
         if ($match) {
-            return redirect()->route('listmatches')->with('success', "Match updated successfully");
+            return redirect()->back()->with('success', "Match updated successfully");
         }
-        return redirect()->back()->with('error', 'Somthing went wrong on server side');
+        return redirect()->back()->with('error', 'Something went wrong on server side');
     }
     
     public function editMatch(Request $request, $match_id)
