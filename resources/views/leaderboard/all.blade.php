@@ -38,5 +38,6 @@
                 </td>
             </tr>
         @endforeach
+        @include('leaderboard.self-rank',['type'=>'all'])
     </tbody>
 </table>

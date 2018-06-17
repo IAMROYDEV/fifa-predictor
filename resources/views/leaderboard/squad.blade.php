@@ -43,6 +43,6 @@
                 </td>
             </tr>
         @endforeach
-        
+        @include('leaderboard.self-rank',['type'=>'squad'])
     </tbody>
 </table>
