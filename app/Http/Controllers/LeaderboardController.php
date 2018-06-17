@@ -10,9 +10,9 @@ class LeaderboardController extends Controller
 {
     public function index($type='')
     {
-        if (!auth()->user() || !auth()->user()->is_admin) {
-            return view('match.leaderboard');
-        }
+        // if (!auth()->user() || !auth()->user()->is_admin) {
+        //     return view('match.leaderboard');
+        // }
         $rankLimit=7;
         $type=$type ? : request('type');
         $squads=Leaderboard::whereType('squad')
