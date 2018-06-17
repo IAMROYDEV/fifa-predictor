@@ -7,7 +7,7 @@
      It seems you still have not selected or locked your squad <a href="/users-squad" class="btn btn-warning">Click here to create your squad</a>
     </div>
 @endif
-<table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
+<table class="table" style="text-align:left">
     <thead>
         <tr>
             <th>Rank</th>
@@ -43,5 +43,6 @@
                 </td>
             </tr>
         @endforeach
+        
     </tbody>
 </table>

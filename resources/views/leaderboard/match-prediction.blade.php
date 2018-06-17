@@ -10,7 +10,7 @@
     <a href="/match/prediction/1" class="btn btn-warning">Click here to update your score predictions</a>
 </div>
 @endif
-<table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
+<table class="table" style="text-align:left">
     <thead>
         <tr>
             <th>Rank</th>
@@ -46,5 +46,6 @@
                 </td>
             </tr>
         @endforeach
+        @include('leaderboard.self-rank',['type'=>'predictions'])
     </tbody>
 </table>

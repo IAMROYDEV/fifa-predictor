@@ -74,6 +74,8 @@ input:checked + label {
 @media screen and (max-width: 650px) {
   label {
     font-size: 10px;
+    width:102px;
+    padding:15px 17px;
   }
   label:before {
     margin: 0;

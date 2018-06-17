@@ -3,7 +3,7 @@
 <legend>This lists includes all points including squad scores,match predictions & global predictions</legend>
 @include('leaderboard.auth-message')
 
-<table class="table table-hover table-outline table-vcenter text-nowrap card-table" style="text-align:left">
+<table class="table" style="text-align:left">
     <thead>
         <tr>
             <th>Rank</th>

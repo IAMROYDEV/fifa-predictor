@@ -10,7 +10,7 @@ class LeaderboardController extends Controller
 {
     public function index($type='')
     {
-        $rankLimit=25;
+        $rankLimit=7;
         $type=$type ? : request('type');
         $squads=Leaderboard::whereType('squad')
                     ->orderBy('rank', 'ASC')->whereNotNull('rank')
