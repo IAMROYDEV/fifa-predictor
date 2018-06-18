@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-        
+        <link rel="manifest" href="/manifest.json">
         <!-- Styles -->
         <style>
             html, body {
@@ -27,9 +27,14 @@
                 height: 100vh;
                 margin: 0;
             }
+            body{
+                
+                overflow: hidden;
+            }
 
             .full-height {
                 height: 100vh;
+                overflow: hidden;
             }
 
             .flex-center {
@@ -402,5 +407,7 @@
             })();
             </script>
         <!--End of Tawk.to Script-->
+         
     @endif
+    
 </html>
