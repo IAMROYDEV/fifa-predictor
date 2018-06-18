@@ -28,13 +28,13 @@
                 margin: 0;
             }
             body{
-                
+
                 overflow: hidden;
             }
 
             .full-height {
                 height: 100vh;
-                overflow: hidden;
+                overflow: auto;
             }
 
             .flex-center {
