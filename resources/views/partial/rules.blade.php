@@ -39,6 +39,7 @@
 				<li><b>TOP SQUAD</b>:  Top 3 users who earn the most points in with the squad will win gift hampers</li>
 				<li><b>PREFECT PREDICTOR</b>: Top 3 users that earn the most points in the predictions will win gift hampers</li>
 				<li><b>TOTAL STAR</b>: Top 3 users the earn most point across all the competitions with combined bonus points will win gift hampers</li>
+				<li>A single user can win only one competition. if the user leads in 2 different competations, the prize will be given to the next user in one of the competition.</li>
 			</ul>
 			<h3>YOU CAN ALSO ENROLL IN OUR CONTRIBUTED GAME TO WIN CASH PRIZES. CONTACT US FOR MORE DETAILS. YOU CAN CONTACT VIA CHAT ON HOME PAGE OR email US: <a href="mailto:fifa8teen@gmail.com">fifa8teen@gmail.com</a>
 			</h3>
