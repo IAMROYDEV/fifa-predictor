@@ -14,8 +14,13 @@
                             <td><span class="avatar avatar-xl" style="background-image: url({{$user->avatar}})"></span></td>
                             <td class="text-left">{{$user->name}}</td>
                             <td class="text-left">{{$user->email}}</td>
+                            <td>
+                                <a href="{{route('admin.user.impersonate',$user->id)}}" title="impersonate">
+                                    <i class="fe fe-user"></i>
+                                </a>
+                            </td>
                             <td class="text-right">
-                            <span class="">
+                            <span>
                                 <label class="custom-switch">
                                     <form action="/admin/users/{{$user->id}}" method="post" id="user-admin-form-{{$user->id}}">
                                         @method('PUT')

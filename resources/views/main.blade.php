@@ -394,6 +394,16 @@
         });
     </script>
     @if(env('APP_ENV')==='production')
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120655950-1"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-120655950-1');
+      </script>
+    @endif
+    @if(env('APP_ENV')==='production')
         <!--Start of Tawk.to Script-->
             <script type="text/javascript">
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

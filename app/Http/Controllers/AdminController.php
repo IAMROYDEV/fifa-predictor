@@ -45,6 +45,13 @@ class AdminController extends Controller
         return view('admin.userIndex', ['users' => $users]);
     }
 
+    public function impersonate($userID)
+    {
+        auth()->logout();
+        auth()->loginUsingId($userID);
+        return redirect()->route('user.dashboard');
+    }
+
     public function admin_update(Request $request, $id)
     {
         $params = $request->all();

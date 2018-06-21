@@ -22,6 +22,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/worldcup/{id}', 'AdminController@worldCupShow');
     
     Route::get('/admin/users', 'AdminController@admin_index')->name('admin.users.list');
+    Route::get('/admin/impersonate/user/{userID}', 'AdminController@impersonate')->name('admin.user.impersonate');
     Route::match(['put', 'post'], '/admin/users/{user_id}', 'AdminController@admin_update')->name('admin.users.update');
 
     Route::get('/admin/global-settings', 'GlobalSettingsController@index')->name('admin.globalSettingsList');
